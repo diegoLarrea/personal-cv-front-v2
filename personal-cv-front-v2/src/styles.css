@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../src/assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf");
+}
+
+.comfortaa {
+  font-family: "Comfortaa";
+}
+
+.bg-rosado{
+    background-color: #d9186b !important;
+}
+
+.text-rosado{
+    color: #d9186b !important;
+}
+
+.border-rosado{
+  border: 1px solid #d9186b !important;
+}
+
+.bg-lila{
+    background-color: #402661 !important;
+}
+
+.text-lila{
+    color: #402661 !important;
+}
+
+.border-lila{
+  border: 1px solid #402661 !important;
+}
+
+.text-justify {
+  text-justify: inter-word;
+}
