@@ -7,16 +7,13 @@ declare var $:any;
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
+  screenWidth = 0;
 
   ngOnInit(): void {
-    // Toggle the side navigation
-    $("#sidebarToggle, #sidebarToggleTop").on("click", function(e) {
-      $("body").toggleClass("sidebar-toggled");
-      $(".sidebar").toggleClass("toggled");
-      if ($(".sidebar").hasClass("toggled")) {
-        $(".sidebar .collapse").collapse("hide");
-      }
+    this.screenWidth = $(window).width(); 
+    $(window).resize(() => {
+      this.screenWidth = $(window).width()
     });
 
     // Close any open menu accordions when window is resized below 768px
@@ -64,4 +61,15 @@ export class PagesComponent implements OnInit {
     });
   }
 
+  toggled = false;
+  toggleSideBar(){
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $(".sidebar .collapse").collapse("hide");
+      this.toggled = true;
+    }else{
+      this.toggled = false;
+    }
+  }
 }
