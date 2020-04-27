@@ -1,130 +1,104 @@
 <div class="row">
     <div class="col-12">
-        <h3 class="comfortaa text-lila font-weight-bold">Ofertas Laborales</h3>
-    </div>
-    <div class="col-12 my-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="comfortaa text-lila font-weight-bold d-none d-md-block">Ofertas Laborales</h3>
+                    <h5 class="comfortaa text-lila font-weight-bold d-md-none">Ofertas Laborales</h5>
+                </div>
+                <div class="col-12 my-auto">
+                    <h6 class="comfortaa text-rosado mb-3">Filtros</h6>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Oportunidad..." aria-label="buscar"
+                            aria-describedby="buscar">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <select class="selectpicker mb-3 mr-3" id="itemspp" title="Items por pág." data-width="100%">
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <select data-live-search="true" class="selectpicker mb-3" id="areas" data-width="100%" title="Areas"
+                        data-size="10" multiple data-selected-text-format="count" data-actions-box="true"
+                        data-count-selected-text="Seleccionado/s ({0})">
+                        <option *ngFor="let i of areas">{{i.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <select data-live-search="true" class="selectpicker mb-3" id="localidades" data-width="100%"
+                        title="Localidades" data-size="10" multiple data-selected-text-format="count"
+                        data-actions-box="true" data-count-selected-text="Seleccionado/s ({0})">
+                        <option attr.data-subtext="{{i.direccion}}" *ngFor="let i of localidades">{{i.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <a class="btn btn-primary btn-sm bg-rosado border-rosado mb-3 float-right" href="#"><i
+                            class="fas fa-search mr-2"></i>
+                        Aplicar filtros </a>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-12">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <h6 class="comfortaa text-rosado">Filtros</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Buscar..."
-                                        aria-label="Username" aria-describedby="basic-addon1">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <select data-width="100%" title="Áreas" class="mb-3">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Barbecue</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <select data-width="100%" title="Localidades" class="mb-3">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Barbecue</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <a class="btn btn-primary btn-sm bg-rosado border-rosado float-right mb-3" href="#"><i
-                                        class="fas fa-search mr-2"></i>
-                                    Aplicar filtros </a>
+            <div *ngFor="let i of ofertas" class="col-12 col-lg-6">
+                <!-- Basic Card Example -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header py-3">
+                        <div class="dropdown no-arrow  float-right">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-share text-muted"></i>
+                                <!-- <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i> -->
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#"><i class="fab fa-linkedin mr-2"
+                                        style="color: #0e76a8;"></i> Linked In</a>
+                                <a class="dropdown-item" href="#"><i class="fab fa-facebook mr-2"
+                                        style="color: #3b5998;"></i> Facebook</a>
+                                <a class="dropdown-item" href="#"><i class="fab fa-twitter mr-2"
+                                        style="color: #00acee;"></i> Twitter</a>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <!-- Basic Card Example -->
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <div class="dropdown no-arrow  float-right">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-share text-muted"></i>
-                                                <!-- <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i> -->
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#"><i class="fab fa-linkedin mr-2"
-                                                        style="color: #0e76a8;"></i> Linked In</a>
-                                                <a class="dropdown-item" href="#"><i class="fab fa-facebook mr-2"
-                                                        style="color: #3b5998;"></i> Facebook</a>
-                                                <a class="dropdown-item" href="#"><i class="fab fa-twitter mr-2"
-                                                        style="color: #00acee;"></i> Twitter</a>
-                                            </div>
-                                        </div>
-                                        <h6 class="m-0 font-weight-bold text-rosado comfortaa"><i
-                                                class="fas fa-briefcase mr-2"></i>Asesor
-                                            de
-                                            Ventas</h6>
-                                        <span class="badge badge-success">Ventas</span><br>
-                                    </div>
-                                    <div class="card-body comfortaa text-justify">
-                                        The styling for this basic card example is created by using default Bootstrap
-                                        utility classes. By
-                                        using
-                                    </div>
-                                    <div class="card-footer text-muted comfortaa">
-                                        <div class="row h-100">
-                                            <div class="col-6 my-auto">
-                                                <span><i class="fas fa-calendar-day mr-2"></i>12/04/2020</span>
-                                            </div>
-                                            <div class="col-6">
-                                                <a class="btn btn-primary bg-lila border-lila float-right" href="#">Ver
-                                                    detalles</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <h6 class="m-0 font-weight-bold text-rosado comfortaa"><i
+                                class="fas fa-briefcase mr-2"></i>{{i.oportunidad}}</h6>
+                        <span class="badge badge-success">{{i.area.nombre}}</span><br>
+                        <span class="comfortaa d-md-none text-muted">
+                            <small>
+                                <i class="fas fa-calendar-day mr-1"></i>
+                                Publicación:
+                                {{i.fecha_creacion}}
+                                <!-- {{i.fecha_creacion.getUTCDate() + "/" + 
+                                (i.fecha_creacion.getUTCMonth() + 1 ) + "/" +
+                                i.fecha_creacion.getUTCFullYear()}} -->
+                            </small>
+                        </span>
+                    </div>
+                    <div class="card-body comfortaa text-justify">
+                        {{i.descripcion}}
+                    </div>
+                    <div class="card-footer text-muted comfortaa">
+                        <div class="row h-100">
+                            <div class="col-md-6 my-auto d-none d-md-flex">
+                                <small>
+                                    <span>
+                                        <i class="fas fa-calendar-day mr-1"></i>
+                                        Publicación:
+                                        {{i.fecha_creacion}}
+                                        <!-- {{i.fecha_creacion.getUTCDate() + "/" + 
+                                        (i.fecha_creacion.getUTCMonth() + 1 ) + "/" +
+                                        i.fecha_creacion.getUTCFullYear()}} -->
+                                    </span>
+                                </small>
+
                             </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Basic Card Example -->
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <div class="dropdown no-arrow  float-right">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-share text-muted"></i>
-                                                <!-- <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i> -->
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#"><i class="fab fa-linkedin mr-2"
-                                                        style="color: #0e76a8;"></i> Linked In</a>
-                                                <a class="dropdown-item" href="#"><i class="fab fa-facebook mr-2"
-                                                        style="color: #3b5998;"></i> Facebook</a>
-                                                <a class="dropdown-item" href="#"><i class="fab fa-twitter mr-2"
-                                                        style="color: #00acee;"></i> Twitter</a>
-                                            </div>
-                                        </div>
-                                        <h6 class="m-0 font-weight-bold text-rosado comfortaa"><i
-                                                class="fas fa-briefcase mr-2"></i>Asesor
-                                            de
-                                            Ventas</h6>
-                                        <span class="badge badge-success">Ventas</span><br>
-                                    </div>
-                                    <div class="card-body comfortaa text-justify">
-                                        The styling for this basic card example is created by using default Bootstrap
-                                        utility classes. By
-                                        using
-                                    </div>
-                                    <div class="card-footer text-muted comfortaa">
-                                        <div class="row h-100">
-                                            <div class="col-6 my-auto">
-                                                <span><i class="fas fa-calendar-day mr-2"></i>12/04/2020</span>
-                                            </div>
-                                            <div class="col-6">
-                                                <a class="btn btn-primary bg-lila border-lila float-right" href="#">Ver
-                                                    detalles</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-12 col-md-6 my-auto">
+                                <a class="btn btn-primary btn-sm bg-lila border-lila float-right" href="#">Ver
+                                    detalles</a>
                             </div>
                         </div>
                     </div>

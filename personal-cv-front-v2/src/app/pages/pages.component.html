@@ -2,10 +2,11 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-lila sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-lila sidebar sidebar-dark accordion" [class.fixed-style]="screenWidth >= 768" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a *ngIf="!toggled && screenWidth >=768" class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <a *ngIf="!toggled && screenWidth >=768" class="sidebar-brand d-flex align-items-center justify-content-center"
+            href="#">
             <div class="sidebar-brand-icon animated fadeInLeft">
                 <img src="assets/images/personal_logo.png" alt="">
             </div>
@@ -93,32 +94,46 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper bg-white" class="d-flex flex-column" [class.side-no-toggled]="!toggled && screenWidth >= 768" [class.side-toggled]="toggled && screenWidth >=768">
 
         <!-- Main Content -->
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow-sm">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button (click)="toggleSideBar()" id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <button (click)="toggleSideBar()" id="sidebarToggleTop"
+                    class="btn btn-link d-md-none rounded-circle mr-1">
                     <i class="fa fa-bars text-lila"></i>
                 </button>
 
-                <img *ngIf="toggled && screenWidth >= 768" class="animated fadeInLeft" src="assets/images/personal_logo_rosado.png" style="width: 120px;" alt="">
-                <h5 class="comfortaa text-rosado my-auto font-weight-bold" *ngIf="screenWidth < 768">Personal</h5>
+                <img *ngIf="toggled && screenWidth >= 768" class="animated fadeInLeft"
+                    src="assets/images/personal_logo_rosado.png" style="width: 120px;" alt="">
+                <h5 class="comfortaa-bold text-rosado my-auto" *ngIf="screenWidth < 768">Personal</h5>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
+                    <li class="nav-item hover-lila">
+                        <a routerLink="/register" class="nav-link nav-option" href="#" style="cursor: pointer;">
+                            <span class="mr d-none d-lg-inline comfortaa text-rosado font-14">Registrarse</span>
+                        </a>
+                    </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="nav-item hover-lila">
+                        <a routerLink="/login" class="nav-link nav-option" href="#" style="cursor: pointer;">
+                            <span class="mr-2 d-none d-lg-inline comfortaa text-rosado font-14">Iniciar Sesión</span>
+                            <i class="fas fa-sign-in-alt fa-lg text-rosado"></i>
+                        </a>
+                    </li>
+                    <div *ngIf="false" class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
+                    <li *ngIf="false" class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                            <i class="fas fa-user-circle fa-lg"></i>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -156,13 +171,72 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
+        <!-- <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
                     <span>Copyright &copy; Personal</span>
                 </div>
             </div>
+        </footer> -->
+        <!-- Footer -->
+        <footer class="page-footer font-small pt-2 bg-rosado">
+
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <div class="col-12 mb-2">
+                        <div class="text-center">
+                            <img src="assets/images/personal_logo.png" alt="">
+                            <p class="platform-regular mb-0 text-white">Hagamos que todo suceda</p>
+                        </div>
+                    </div>
+                    <div class="col-3 col-sm-2">
+                        <div class="text-center">
+                            <a href="#"><i class="fab fa-facebook-f fa-2x text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-sm-2">
+                        <div class="text-center">
+                            <a href="#"><i class="fab fa-twitter fa-2x text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-sm-2">
+                        <div class="text-center">
+                            <a href="#"><i class="fab fa-instagram fa-2x text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-sm-2">
+                        <div class="text-center">
+                            <a href="#"><i class="fab fa-youtube fa-2x text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-3 offset-3 col-sm-2">
+                        <div class="text-center">
+                            <a href="#"><i class="fab fa-spotify fa-2x text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-sm-2">
+                        <div class="text-center">
+                            <a href="#"><i class="fab fa-foursquare fa-2x text-white"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Grid row -->
+
+            </div>
+            <!-- Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center pb-3 text-white comfortaa">
+                Máximo Lira 522 c/ Avda. España - Asunción, Paraguay - RA +595 971 100000
+            </div>
+            <!-- Copyright -->
+
         </footer>
+        <!-- Footer -->
         <!-- End of Footer -->
 
     </div>
@@ -170,8 +244,3 @@
 
 </div>
 <!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>

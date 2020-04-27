@@ -13,7 +13,7 @@ export class PagesComponent implements OnInit {
   ngOnInit(): void {
     this.screenWidth = $(window).width(); 
     $(window).resize(() => {
-      this.screenWidth = $(window).width()
+      this.screenWidth = $(window).width();
     });
 
     // Close any open menu accordions when window is resized below 768px
@@ -27,7 +27,7 @@ export class PagesComponent implements OnInit {
     $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function(
       e
     ) {
-      if ($(window).width() > 768) {
+      if ($(window).width() >= 768) {
         var e0 = e.originalEvent,
           delta = e0.wheelDelta || -e0.detail;
         this.scrollTop += (delta < 0 ? 1 : -1) * 30;
@@ -35,15 +35,6 @@ export class PagesComponent implements OnInit {
       }
     });
 
-    // Scroll to top button appear
-    $(document).on("scroll", function() {
-      var scrollDistance = $(this).scrollTop();
-      if (scrollDistance > 100) {
-        $(".scroll-to-top").fadeIn();
-      } else {
-        $(".scroll-to-top").fadeOut();
-      }
-    });
 
     // Smooth scrolling using jQuery easing
     $(document).on("click", "a.scroll-to-top", function(e) {
@@ -59,6 +50,10 @@ export class PagesComponent implements OnInit {
         );
       e.preventDefault();
     });
+
+    if(this.screenWidth < 768){
+      this.toggleSideBar();
+    }
   }
 
   toggled = false;

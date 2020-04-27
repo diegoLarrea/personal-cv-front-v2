@@ -1,3 +1,23 @@
 .no-mb {
-    margin: 0px 16px 0px !important;
+  margin: 0px 16px 0px !important;
+}
+
+.nav-option:hover span,
+.nav-option:hover i {
+  color: rgba(217, 24, 107, 0.6) !important;
+}
+
+.fixed-style {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.side-no-toggled {
+    margin-left: 14rem;
+}
+
+.side-toggled {
+    margin-left: 6.5rem;
 }
