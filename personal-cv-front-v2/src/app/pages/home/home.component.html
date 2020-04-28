@@ -11,42 +11,50 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-8">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Oportunidad..." aria-label="buscar"
-                            aria-describedby="buscar">
+                        <input id="buscar" [(ngModel)]="filters.buscar" name="buscar" type="text" class="form-control"
+                            placeholder="Oportunidad..." aria-label="buscar" aria-describedby="buscar">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <select class="selectpicker mb-3 mr-3" id="itemspp" title="Items por pág." data-width="100%">
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
+                    <select [(ngModel)]="filters.itemspp" name="itemspp" class="selectpicker mb-3 mr-3" id="itemspp"
+                        title="Items por pág." data-width="100%">
+                        <option [value]="10" title="10 items por pág.">10</option>
+                        <option [value]="20" title="20 items por pág.">20</option>
+                        <option [value]="30" title="30 items por pág.">30</option>
                     </select>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6">
-                    <select data-live-search="true" class="selectpicker mb-3" id="areas" data-width="100%" title="Areas"
-                        data-size="10" multiple data-selected-text-format="count" data-actions-box="true"
+                    <select [(ngModel)]="filters.areas" name="areas" data-live-search="true" class="selectpicker mb-3"
+                        id="areas" data-width="100%" title="Areas" data-size="10" multiple
+                        data-selected-text-format="count" data-actions-box="true"
                         data-count-selected-text="Seleccionado/s ({0})">
-                        <option *ngFor="let i of areas">{{i.nombre}}</option>
+                        <option [value]="i" *ngFor="let i of areas">{{i.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6">
-                    <select data-live-search="true" class="selectpicker mb-3" id="localidades" data-width="100%"
-                        title="Localidades" data-size="10" multiple data-selected-text-format="count"
-                        data-actions-box="true" data-count-selected-text="Seleccionado/s ({0})">
-                        <option attr.data-subtext="{{i.direccion}}" *ngFor="let i of localidades">{{i.nombre}}</option>
+                    <select [(ngModel)]="filters.localidades" name="localidades" data-live-search="true"
+                        class="selectpicker mb-3" id="localidades" data-width="100%" title="Localidades" data-size="10"
+                        multiple data-selected-text-format="count" data-actions-box="true"
+                        data-count-selected-text="Seleccionado/s ({0})">
+                        <option [value]="i" attr.data-subtext="{{i.direccion}}" *ngFor="let i of localidades">
+                            {{i.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-12">
-                    <a class="btn btn-primary btn-sm bg-rosado border-rosado mb-3 float-right" href="#"><i
-                            class="fas fa-search mr-2"></i>
+                    <a (click)="limpiarFiltros()" class="btn btn-primary btn-sm bg-lila border-lila mb-3 float-right ml-2"
+                        href="#">
+                        Limpiar filtros</a>
+                    <a (click)="getOfertas(1)" class="btn btn-primary btn-sm bg-rosado border-rosado mb-3 float-right"
+                        href="#"><i class="fas fa-search mr-2"></i>
                         Aplicar filtros </a>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div *ngFor="let i of ofertas" class="col-12 col-lg-6">
+            <div *ngFor="let i of ofertas | paginate: { id: 'pagination', itemsPerPage: itemspp, currentPage: p, totalItems: total }; index as j;"
+                class="col-12 col-lg-6">
                 <!-- Basic Card Example -->
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mb-4 animated fadeIn">
                     <div class="card-header py-3">
                         <div class="dropdown no-arrow  float-right">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -66,7 +74,8 @@
                         </div>
                         <h6 class="m-0 font-weight-bold text-rosado comfortaa"><i
                                 class="fas fa-briefcase mr-2"></i>{{i.oportunidad}}</h6>
-                        <span class="badge badge-success">{{i.area.nombre}}</span><br>
+                        <span class="badge badge-success">{{i.area.nombre}}</span>
+                        <span class="badge badge-success bg-rosado ml-2"><i class="fas fa-map-marker-alt mr-2"></i>{{i.localidad.nombre + ", " + i.localidad.direccion}}</span><br>
                         <span class="comfortaa d-md-none text-muted">
                             <small>
                                 <i class="fas fa-calendar-day mr-1"></i>
@@ -104,6 +113,15 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12" *ngIf="!loading && ofertas.length == 0">
+                <p class="text-center"><i class="far fa-sad-tear fa-3x text-rosado"></i></p>
+                <h4 class="comfortaa text-rosado text-center">No se encontraron resultados</h4>
+            </div>
         </div>
     </div>
+</div>
+<div class="text-center mb-3">
+    <pagination-controls id="pagination" class="my-pagination text-center" (pageChange)="getOfertas($event)"
+        previousLabel="" nextLabel="">
+    </pagination-controls>
 </div>

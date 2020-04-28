@@ -21,23 +21,39 @@ export class HomeComponent implements OnInit {
   ofertas: OfertaLaboral[] = [];
   areas: ConfigBase[] = [];
   localidades: Localidad[] = [];
-  loadingAreas = true;
-  loadingLocalidades = true;
   dateFormatter = new DateFormatter();
+  loading = false;
+  
+  //Pagination data
+  filters = {
+    buscar: null,
+    itemspp: 10,
+    areas: [],
+    localidades: []
+  }
+  p: number = 1;
+  itemspp: number = 10;
+  total: number;
+  // End Pagination data //
 
   ngOnInit(): void {
-    this.getOfertas();
+    this.getOfertas(this.p);
     this.getDatos();
     $("select").selectpicker();
   }
 
-  getOfertas(){
-    this.apiOferta.getOfertasLaborales().subscribe(
+  getOfertas(page){
+    this.loading =  true;
+    this.apiOferta.getOfertasLaborales(page, this.filters.buscar, this.filters.itemspp, this.filters.areas, this.filters.localidades).subscribe(
       data => {
         this.ofertas = data.items;
         for( let i=0; i<this.ofertas.length; i++ ){
           this.ofertas[i].fecha_creacion = this.dateFormatter.getDate(this.ofertas[i].fecha_creacion); 
         }
+        this.p = page;
+        this.total = data.total;
+        this.itemspp = this.filters.itemspp;
+        this.loading = false;
       }
     )
   }
@@ -49,14 +65,12 @@ export class HomeComponent implements OnInit {
         setTimeout(()=>{
           $('select').selectpicker('refresh');
         },0)
-        this.loadingLocalidades = false;
       }
     )
 
     this.apiAreas.getAreas().subscribe(
       data => {
         this.areas = data;
-        this.loadingAreas = false;
         setTimeout(()=>{
           $('select').selectpicker('refresh');
         },0)
@@ -64,4 +78,14 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  limpiarFiltros(){
+    this.filters.buscar = null;
+    this.filters.itemspp = 10;
+    this.filters.areas = [];
+    this.filters.localidades = [];
+    setTimeout(()=>{
+      $('select').selectpicker('refresh');
+    },0)
+    this.getOfertas(1);
+  }
 }

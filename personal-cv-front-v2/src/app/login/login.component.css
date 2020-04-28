@@ -1,0 +1,42 @@
+.bg-login {
+  background-color: #a4508b;
+  background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+}
+
+.img {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+.img-mobile {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.link-personal {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+.link:hover {
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.img:focus {
+    outline: none;
+}
+
+.img-mobile:focus {
+    outline: none;
+}
