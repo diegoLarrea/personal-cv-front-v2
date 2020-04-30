@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Platform-Regular";
+  src: url("assets/fonts/platform/platform-regular.ttf");
+}
+
+.platform-regular {
+    font-family: 'Platform-Regular';
+}
+
+.text-rosado {
+  color: #d9186b;
+}
+.bg-rosado {
+  background-color: #d9186b !important;
+}
+
+.border-rosado {
+  border: 1px solid #d9186b;
+}
+
+.title-lg {
+  font-size: 64px;
+}

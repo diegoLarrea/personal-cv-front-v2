@@ -1,0 +1,36 @@
+.bg {
+  background-image: url(../../../assets/images/banner.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%); */
+}
+
+.contact {
+  background: rgba(44, 44, 44, 0.5);
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 2px solid #d9186b;
+}
+
+.slide-text {
+  font-size: 44px;
+}
+
+button:hover {
+  background-color: rgba(217, 24, 107, 0.8) !important;
+}
+
+.text-mobile {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.bt-page {
+    position: absolute;
+    bottom: 10px;
+}
