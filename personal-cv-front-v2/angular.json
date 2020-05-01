@@ -27,13 +27,15 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "src/assets/css/adminlte.css",
-              "node_modules/animate.css/animate.css"
+              "node_modules/animate.css/animate.css",
+              "node_modules/bootstrap-select/dist/css/bootstrap-select.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/adminlte.js"
+              "src/assets/js/adminlte.js",
+              "node_modules/bootstrap-select/dist/js/bootstrap-select.js"
             ]
           },
           "configurations": {

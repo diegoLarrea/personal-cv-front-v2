@@ -63,6 +63,6 @@ input[type="color"]:focus,
   outline: 0 none;
 }
 
-.active {
-  background-color: #d9186b !important;
+.bg-negro {
+  background-color: #343a40 !important;
 }

@@ -1,1 +1,39 @@
-<p>cargar-cv works!</p>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active text-rosado platform-regular" href="#datos-personales" role="tab" data-toggle="tab">
+            <i class="fas fa-user mr-2"></i>Datos Personales
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-rosado platform-regular" href="#educacion" role="tab" data-toggle="tab">
+            <i class="fas fa-graduation-cap mr-2"></i>Educación
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-rosado platform-regular" href="#experiencias" role="tab" data-toggle="tab">
+            <i class="fas fa-briefcase mr-2"></i>Experiencias
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-rosado platform-regular" href="#referencias" role="tab"
+            data-toggle="tab">
+            <i class="fas fa-phone-alt mr-2"></i>Referencias
+        </a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade" id="datos-personales">
+        <app-datos-personales></app-datos-personales>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="educacion">
+        <app-datos-educacion></app-datos-educacion>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="experiencias">
+        <app-datos-experiencias></app-datos-experiencias>    
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="referencias">
+        <app-datos-referencias></app-datos-referencias>
+    </div>
+</div>

@@ -12,7 +12,13 @@ import { CurriculumsComponent } from './curriculums/curriculums.component';
 import { AjustesComponent } from './ajustes/ajustes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EmpleosDisponiblesComponent } from './empleos-disponibles/empleos-disponibles.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { DatosPersonalesComponent } from './cargar-cv/datos-personales/datos-personales.component';
+import { DatosEducacionComponent } from './cargar-cv/datos-educacion/datos-educacion.component';
+import { DatosExperienciasComponent } from './cargar-cv/datos-experiencias/datos-experiencias.component';
+import { DatosReferenciasComponent } from './cargar-cv/datos-referencias/datos-referencias.component';
 
 @NgModule({
   declarations: [PagesComponent,
@@ -23,10 +29,13 @@ import { EmpleosDisponiblesComponent } from './empleos-disponibles/empleos-dispo
      CurriculumsComponent,
      AjustesComponent, 
      UsuariosComponent, 
-     EmpleosDisponiblesComponent],
+     EmpleosDisponiblesComponent, DatosPersonalesComponent, DatosEducacionComponent, DatosExperienciasComponent, DatosReferenciasComponent],
   imports: [
     CommonModule,
     ParticlesModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    FormsModule,
     PagesRoutingModule
   ]
 })

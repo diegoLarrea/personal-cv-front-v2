@@ -1,1 +1,72 @@
-<p>empleos-disponibles works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="platform-light text-black-50 mt-3">Empleos disponibles (<span class="text-rosado">{{total}}</span>)</h2>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="platform-light text-rosado">Filtros</h5>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="input-group mb-3">
+                        <input id="buscar" [(ngModel)]="filters.buscar" name="buscar" type="text" class="form-control" placeholder="Nombre del empleo">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <select [(ngModel)]="filters.itemspp" name="itemspp" class="selectpicker mb-3" data-width="100%">
+                        <option title="10 items por pág." [value]="10">10</option>
+                        <option title="20 items por pág." [value]="20">20</option>
+                        <option title="30 items por pág." [value]="30">30</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6">
+                    <select [(ngModel)]="filters.areas" name="areas" id="areas" data-selected-text-format="count" multiple data-live-search="true"
+                        class="selectpicker mb-3" data-width="100%" title="Áreas">
+                        <option *ngFor="let i of areas" title="{{i.nombre}}" [value]="i">{{i.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6">
+                    <select [(ngModel)]="filters.localidades" id="localidades" data-selected-text-format="count" multiple data-live-search="true"
+                        class="selectpicker mb-3" data-width="100%" title="Localidades">
+                        <option *ngFor="let i of localidades" attr.data-subtext="{{i.direccion}}" title="{{i.nombre}}"
+                            [value]="i">{{i.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button (click)="getOfertas(1)" class="btn btn-sm bg-rosado text-white float-right ml-2 mb-3"><i
+                            class="fas fa-search mr-2"></i>Buscar</button>
+                    <button (click)="limpiarFiltros()" class="btn btn-sm btn-outline-secondary float-right mb-3">Limpiar filtros</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="empleos-disponibles" class="row">
+        <div *ngFor="let i of ofertas | paginate: { id: 'pagination', itemsPerPage: itemspp, currentPage: p, totalItems: total }; index as j;" class="col-12 col-sm-10 offset-sm-1">
+            <div class="card shadow">
+                <div class="card-header text-white bg-negro">
+                    <button class="btn btn-sm bg-rosado border-rosado text-white platform-regular float-right mt-2">Ver
+                        detalles</button>
+                    <h3 class="mb-0 platform-light">{{i.oportunidad}}</h3>
+                    <span class="badge bg-rosado text-white mx-1">{{i.fecha_creacion}}</span>
+                    <span class="badge bg-rosado text-white mx-1"><i class="fas fa-map-marker-alt mr-2"></i>{{i.localidad.nombre +', '+ i.localidad.direccion}}</span>
+                    <span class="badge bg-rosado text-white mx-1">{{i.area.nombre}}</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{i.descripcion}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="!loading && ofertas.length == 0">
+            <p class="text-center"><i class="far fa-sad-tear fa-3x text-rosado"></i></p>
+            <h4 class="platform-light text-rosado text-center">No se encontraron resultados</h4>
+        </div>
+        <div class="col-12 text-center mb-3">
+            <pagination-controls id="pagination" class="my-pagination text-center" (pageChange)="getOfertas($event)"
+                previousLabel="" nextLabel="">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

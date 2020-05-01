@@ -36,6 +36,11 @@ export class PagesComponent implements OnInit {
 
   sideOptions = [
     {
+      id: null,
+      title: "MENÚ",
+      isTitle: true
+    },
+    {
       id: 1,
       title: "Empleos disponibles",
       route: "/empleos-disponibles",
