@@ -66,48 +66,12 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-briefcase"></i>
-                            <p class="platform-regular">Empleos</p>
+                    <li *ngFor="let i of sideOptions" [class.nav-item]="!i.isTitle" [class.nav-header]="i.isTitle" class="platform-regular">
+                        <a *ngIf="!i.isTitle" routerLink="{{i.route}}" href="#" class="nav-link" [class.active]="i.active">
+                            <i class="{{i.icon}}"></i>
+                            <p class="platform-regular">{{i.title}}</p>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-pencil-alt"></i>
-                            <p class="platform-regular">Cargar CV</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-star"></i>
-                            <p class="platform-regular">Postulaciones</p>
-                        </a>
-                    </li>
-                    <li class="nav-header platform-regular">ADMINISTRACIÓN</li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-paste"></i>
-                            <p class="platform-regular">Currículums</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-briefcase"></i>
-                            <p class="platform-regular">Ofertas Laborales</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-cog"></i>
-                            <p class="platform-regular">Ajustes</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user-friends"></i>
-                            <p class="platform-regular">Usuarios</p>
-                        </a>
+                        <span *ngIf="i.isTitle">{{i.title}}</span>
                     </li>
                 </ul>
             </nav>
@@ -131,10 +95,10 @@
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
-        <div class="float-right d-none d-sm-block platform-regular">
+        <div class="float-right d-none d-sm-block platform-light">
             <b>Version</b> 2.0.0
         </div>
-        <strong class="platform-regular">Copyright &copy; 2020 <a class="platform-regular"
+        <strong class="platform-light">Copyright &copy; 2020 <a class="platform-light text-rosado"
                 href="https://www.personal.com.py/">personal.com.py</a></strong>
     </footer>
 </div>

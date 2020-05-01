@@ -62,3 +62,7 @@ input[type="color"]:focus,
   box-shadow: 0 1px 1px rgba(217, 24, 107, 0.075) inset, 0 0 8px rgba(217, 24, 107, 0.2);
   outline: 0 none;
 }
+
+.active {
+  background-color: #d9186b !important;
+}
