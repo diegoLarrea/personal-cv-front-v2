@@ -4,8 +4,17 @@
   src: url("assets/fonts/platform/platform-regular.ttf");
 }
 
+@font-face {
+  font-family: "Platform-Light";
+  src: url("assets/fonts/platform/platform-light-webfont.ttf");
+}
+
 .platform-regular {
     font-family: 'Platform-Regular';
+}
+
+.platform-light {
+  font-family: 'Platform-Light';
 }
 
 .text-rosado {
@@ -21,4 +30,35 @@
 
 .title-lg {
   font-size: 64px;
+}
+
+.bg {
+  background-image: url(assets/images/banner.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%); */
+}
+
+In the end I changed the following css entry in bootstrap.css
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  border-color: rgba(217, 24, 107, 0.2);
+  box-shadow: 0 1px 1px rgba(217, 24, 107, 0.075) inset, 0 0 8px rgba(217, 24, 107, 0.2);
+  outline: 0 none;
 }
