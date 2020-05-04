@@ -9,6 +9,7 @@ import { CurriculumsComponent } from './curriculums/curriculums.component';
 import { AjustesComponent } from './ajustes/ajustes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EmpleosDisponiblesComponent } from './empleos-disponibles/empleos-disponibles.component';
+import { AuthGuardService } from '../_services/guard';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
         data: {
           layout: true,
           id: 1
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: "cargar-cv",

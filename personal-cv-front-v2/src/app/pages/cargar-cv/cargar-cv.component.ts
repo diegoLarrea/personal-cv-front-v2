@@ -14,7 +14,6 @@ export class CargarCvComponent implements OnInit {
   }
 
   activaTab(tab){
-    // $('.tab-pane a[href="#' + tab + '"]').tab('show');
     $(`#${tab}`).tab("show");
   }
 }

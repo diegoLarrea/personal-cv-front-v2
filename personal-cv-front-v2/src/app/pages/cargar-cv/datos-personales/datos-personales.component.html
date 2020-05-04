@@ -1,1 +1,104 @@
-<p>datos-personales works!</p>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="ci">Nro. de documento</label>
+        <div class="input-group mb-3">
+            <input class="border border-secondary" type="text" class="form-control" placeholder="" id="ci">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="nombres">Nombres</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="nombres">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="apellidos">Apellidos</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="apellidos">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="f-nacimiento">F. Nacimiento</label>
+        <div class="input-group mb-3">
+            <input type="date" class="form-control" placeholder="" id="f-nacimiento">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="sexo">Sexo</label>
+        <div class="input-group mb-3">
+            <select class="selectpicker" id="sexo" data-width="100%" title="Elegir"
+                data-style="bg-white border border-gris">
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="estado-civil">Estado Civil</label>
+        <div class="input-group mb-3">
+            <select class="selectpicker" id="estado-civil" data-width="100%" title="Elegir"
+                data-style="bg-white border border-gris">
+                <option value="F">Soltero/a</option>
+                <option value="M">Casado/a</option>
+                <option value="M">Viudo/a</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="pais">País Nacimiento</label>
+        <div class="input-group mb-3">
+            <select class="selectpicker" data-live-search="true" id="pais" data-width="100%" title="Elegir"
+                data-style="bg-white border border-gris" data-size="10">
+                <option *ngFor="let i of paises" [value]="i">{{i}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="ciudad">Ciudad Residencia</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="ciudad">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="email">Email</label>
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="" id="email">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="cel-1">Celular 1</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="cel-1">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="cel-2">Celular 2</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="cel-2">
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="tel">Teléfono</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="" id="tel">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="form-check">
+            <input [(ngModel)]="checkFamiliares" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Tengo familiar(es) que trabaja(n) en Personal ( * )
+            </label>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="form-check">
+            <input [(ngModel)]="checkHeTrabajado" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                He trabajo en Personal ( * )
+            </label>
+        </div>
+    </div>
+</div>

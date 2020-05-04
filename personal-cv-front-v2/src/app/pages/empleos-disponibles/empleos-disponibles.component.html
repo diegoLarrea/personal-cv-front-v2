@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="platform-light text-black-50 mt-3">Empleos disponibles (<span class="text-rosado">{{total}}</span>)</h2>
+            <h2 class="platform-light text-black-50 mt-3">Empleos disponibles (<span
+                    class="text-rosado">{{total}}</span>)</h2>
         </div>
         <div class="col-12">
             <div class="row">
@@ -10,7 +11,8 @@
                 </div>
                 <div class="col-12 col-md-8">
                     <div class="input-group mb-3">
-                        <input id="buscar" [(ngModel)]="filters.buscar" name="buscar" type="text" class="form-control" placeholder="Nombre del empleo">
+                        <input id="buscar" [(ngModel)]="filters.buscar" name="buscar" type="text" class="form-control"
+                            placeholder="Nombre del empleo">
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
@@ -21,14 +23,15 @@
                     </select>
                 </div>
                 <div class="col-12 col-md-6">
-                    <select [(ngModel)]="filters.areas" name="areas" id="areas" data-selected-text-format="count" multiple data-live-search="true"
-                        class="selectpicker mb-3" data-width="100%" title="Áreas">
+                    <select [(ngModel)]="filters.areas" name="areas" id="areas" data-selected-text-format="count"
+                        multiple data-live-search="true" class="selectpicker mb-3" data-width="100%" title="Áreas">
                         <option *ngFor="let i of areas" title="{{i.nombre}}" [value]="i">{{i.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-12 col-md-6">
-                    <select [(ngModel)]="filters.localidades" id="localidades" data-selected-text-format="count" multiple data-live-search="true"
-                        class="selectpicker mb-3" data-width="100%" title="Localidades">
+                    <select [(ngModel)]="filters.localidades" id="localidades" data-selected-text-format="count"
+                        multiple data-live-search="true" class="selectpicker mb-3" data-width="100%"
+                        title="Localidades">
                         <option *ngFor="let i of localidades" attr.data-subtext="{{i.direccion}}" title="{{i.nombre}}"
                             [value]="i">{{i.nombre}}</option>
                     </select>
@@ -36,26 +39,34 @@
                 <div class="col-12">
                     <button (click)="getOfertas(1)" class="btn btn-sm bg-rosado text-white float-right ml-2 mb-3"><i
                             class="fas fa-search mr-2"></i>Buscar</button>
-                    <button (click)="limpiarFiltros()" class="btn btn-sm btn-outline-secondary float-right mb-3">Limpiar filtros</button>
+                    <button (click)="limpiarFiltros()" class="btn btn-sm btn-outline-secondary float-right mb-3">Limpiar
+                        filtros</button>
                 </div>
             </div>
         </div>
     </div>
     <div id="empleos-disponibles" class="row">
-        <div *ngFor="let i of ofertas | paginate: { id: 'pagination', itemsPerPage: itemspp, currentPage: p, totalItems: total }; index as j;" class="col-12 col-sm-10 offset-sm-1">
+        <div *ngFor="let i of ofertas | paginate: { id: 'pagination', itemsPerPage: itemspp, currentPage: p, totalItems: total }; index as j;"
+            class="col-12 col-sm-10 offset-sm-1">
             <div class="card shadow">
-                <div class="card-header text-white bg-negro">
-                    <button class="btn btn-sm bg-rosado border-rosado text-white platform-regular float-right mt-2">Ver
+                <div class="card-header text-rosado">
+                    <button
+                        class="btn btn-sm bg-rosado border-rosado text-white platform-regular float-right mt-2 d-none d-md-block">Ver
                         detalles</button>
-                    <h3 class="mb-0 platform-light">{{i.oportunidad}}</h3>
-                    <span class="badge bg-rosado text-white mx-1">{{i.fecha_creacion}}</span>
-                    <span class="badge bg-rosado text-white mx-1"><i class="fas fa-map-marker-alt mr-2"></i>{{i.localidad.nombre +', '+ i.localidad.direccion}}</span>
-                    <span class="badge bg-rosado text-white mx-1">{{i.area.nombre}}</span>
+                    <h3 class="mb-0 platform-regular">{{i.oportunidad}}</h3>
+                    <span class="badge bg-dark text-white mx-1">{{i.fecha_creacion}}</span>
+                    <span class="badge bg-dark text-white mx-1"><i
+                            class="fas fa-map-marker-alt mr-2"></i>{{i.localidad.nombre +', '+ i.localidad.direccion}}</span>
+                    <span class="badge bg-dark text-white mx-1">{{i.area.nombre}}</span>
                 </div>
                 <div class="card-body">
                     <p class="card-text">
                         {{i.descripcion}}
                     </p>
+                </div>
+                <div class="card-footer text-muted d-md-none text-center bg-white">
+                    <button
+                        class="btn btn-sm bg-rosado border-rosado text-white platform-regular">Ver detalles</button>
                 </div>
             </div>
         </div>

@@ -15,25 +15,48 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-rosado platform-regular" href="#referencias" role="tab"
-            data-toggle="tab">
+        <a class="nav-link text-rosado platform-regular" href="#referencias" role="tab" data-toggle="tab">
             <i class="fas fa-phone-alt mr-2"></i>Referencias
         </a>
     </li>
 </ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade" id="datos-personales">
-        <app-datos-personales></app-datos-personales>
+<div class="row">
+    <!-- /.col -->
+    <div class="col-12">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-negro">
+                <h3 class="widget-user-username mt-2 text-white platform-light">Alexander Pierce</h3>
+                <!-- <button class="btn btn-sm bg-rosado border-rosado text-white platform-light">Descar mi CV</button> -->
+            </div>
+            <div class="widget-user-image">
+                <img class="img-circle elevation-2" src="assets/images/home-2.png" alt="User Avatar">
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade" id="datos-personales">
+                                <app-datos-personales></app-datos-personales>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="educacion">
+                                <app-datos-educacion></app-datos-educacion>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="experiencias">
+                                <app-datos-experiencias></app-datos-experiencias>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="referencias">
+                                <app-datos-referencias></app-datos-referencias>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+        <!-- /.widget-user -->
     </div>
-    <div role="tabpanel" class="tab-pane fade" id="educacion">
-        <app-datos-educacion></app-datos-educacion>
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="experiencias">
-        <app-datos-experiencias></app-datos-experiencias>    
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="referencias">
-        <app-datos-referencias></app-datos-referencias>
-    </div>
+    <!-- /.col -->
 </div>
