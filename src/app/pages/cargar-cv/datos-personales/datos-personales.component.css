@@ -5,3 +5,7 @@ label {
 .border-gris {
     border-color:#ced4da !important;
 }
+
+.border-radius {
+    border-radius: 4px;
+}

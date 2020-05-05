@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ParticlesModule } from 'angular-particle';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -11,6 +11,9 @@ import { authInterceptorProviders } from './_services/interceptor';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
+import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -21,7 +24,8 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,9 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       }
     }),
+    ParticlesModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
     AppRoutingModule
   ],
   providers: [authInterceptorProviders],

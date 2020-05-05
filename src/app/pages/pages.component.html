@@ -1,8 +1,5 @@
-<div *ngIf="!layout">
-    <router-outlet></router-outlet>
-</div>
 <!-- Site wrapper -->
-<div *ngIf="layout" class="wrapper">
+<div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -11,7 +8,7 @@
                 <a (click)="sideFunction()" class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                         class="fas fa-bars"></i></a>
             </li>
-            <li *ngIf="hasCollapse" class="nav-item">
+            <li  class="nav-item">
                 <img class="animated fadeInDown" src="assets/images/personal_logo_rosado.png"
                     style="width: 100px; height: auto;" alt="">
             </li>
@@ -27,15 +24,16 @@
             </li> -->
             <!-- User Dropdown Menu -->
             <li class="nav-item dropdown">
-                <a class="nav-link p-0 h-100 my-auto" data-toggle="dropdown" href="#">
-                    <i class="fas fa-user-circle fa-2x"></i>
+                <a class="nav-link p-0 h-100 my-auto platform-light" data-toggle="dropdown" href="#"> 
+                    <i class="fas fa-user-circle fa-lg mr-2"></i>
+                    <span>{{user.email}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
+                    <a style="cursor: pointer;" class="dropdown-item">
                         <i class="fas fa-user mr-2"></i> Perfil
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
+                    <a (click)="salir()" style="cursor: pointer;" class="dropdown-item">
                         <i class="fas fa-sign-out-alt mr-2"></i> Salir
                     </a>
                 </div>
@@ -47,18 +45,13 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a *ngIf="!hasCollapse" href="#" class="brand-link text-center" style="height: 57px;">
-            <!-- <img src="../../dist/img/AdminLTELogo.png"
-           alt="AdminLTE Logo"
-           class="brand-image img-circle elevation-3"
-           style="opacity: .8"> -->
+        <!-- <a *ngIf="!hasCollapse" href="#" class="brand-link text-center" style="height: 57px;">
             <span class="brand-text">
                 <img class="animated fadeInLeft" src="assets/images/personal_logo.png"
                     style="width: 100px; height: auto;" alt="">
             </span>
 
-            <!-- <span class="brand-text font-weight-light">AdminLTE 3</span> -->
-        </a>
+        </a> -->
 
         <!-- Sidebar -->
         <div class="sidebar">

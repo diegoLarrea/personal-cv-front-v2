@@ -30,8 +30,12 @@
                 <h3 class="widget-user-username mt-2 text-white platform-light">Alexander Pierce</h3>
                 <!-- <button class="btn btn-sm bg-rosado border-rosado text-white platform-light">Descar mi CV</button> -->
             </div>
-            <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="assets/images/home-2.png" alt="User Avatar">
+            <div (click)="selectImage()" class="widget-user-image" style="cursor: pointer;">
+                <input (change)="handleFiles($event.target.files)" type="file" id="profile">
+                <img class="image img-circle elevation-2" src="{{img == null?'assets/images/home-2.png':img}}" alt="User Avatar">
+                <div class="middle">
+                    <i class="fas fa-pencil-alt text-white fa-lg"></i>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="row">

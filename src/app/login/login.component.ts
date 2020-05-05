@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.user, this.pass).subscribe(
       data => {
         this.token.saveToken(JSON.stringify(data));    
-        this.router.navigate(['empleos-disponibles']);
+        this.router.navigate(['portal']);
       },
       error => {
         console.log(error);

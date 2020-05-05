@@ -18,6 +18,7 @@ export class AuthService {
         
         // Check whether the token is expired and return
         // true or false
+        if(t == null) return false;
         return !this.helper.isTokenExpired(t["access"]);
     }
 
@@ -26,6 +27,13 @@ export class AuthService {
             username: username,
             password: password
         });
+    }
+
+    public getUserId(){
+        let t = JSON.parse(this.token.getToken());
+        if(t == null) return null;
+        
+        return this.helper.decodeToken(t["access"]).user_id;
     }
 
 }
