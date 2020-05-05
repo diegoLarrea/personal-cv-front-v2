@@ -9,12 +9,21 @@
   src: url("assets/fonts/platform/platform-light-webfont.ttf");
 }
 
+@font-face {
+  font-family: "Comfortaa";
+  src: url("assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf");
+}
+
 .platform-regular {
     font-family: 'Platform-Regular';
 }
 
 .platform-light {
   font-family: 'Platform-Light';
+}
+
+.comfortaa {
+  font-family: 'Comfortaa';
 }
 
 .text-rosado {

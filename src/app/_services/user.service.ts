@@ -12,4 +12,8 @@ export class UserService {
   getById(id): Observable<any>{
     return this.http.get(`api/user/${id}`);
   }
+
+  post(body): Observable<any>{
+    return this.http.post(`api/user`, body);
+  }
 }
