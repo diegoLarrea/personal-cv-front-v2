@@ -9,3 +9,7 @@
 .border-gris {
   border-color:#ced4da !important;
 }
+
+.active {
+  background-color: #d9186b !important;
+}

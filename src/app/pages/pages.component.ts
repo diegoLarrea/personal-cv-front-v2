@@ -51,7 +51,6 @@ export class PagesComponent implements OnInit {
           perms.push(data[i].codename);
         }
         this.permissionsService.loadPermissions(perms);
-        console.log(data);
       }
     )
     this.apiUser.getById(this.auth.getUser()).subscribe(

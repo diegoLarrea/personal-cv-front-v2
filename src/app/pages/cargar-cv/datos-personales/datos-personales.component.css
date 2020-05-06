@@ -9,3 +9,7 @@ label {
 .border-radius {
     border-radius: 4px;
 }
+
+.card-header-bb {
+    border-bottom: none;
+}

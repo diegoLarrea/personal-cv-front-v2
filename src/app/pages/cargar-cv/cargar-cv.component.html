@@ -27,7 +27,7 @@
         <div class="card card-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-negro">
-                <h3 class="widget-user-username mt-2 text-white platform-light">Alexander Pierce</h3>
+                <h3 class="widget-user-username mt-2 text-white platform-light">{{persona.nombres + ' ' + persona.apellidos}}</h3>
                 <!-- <button class="btn btn-sm bg-rosado border-rosado text-white platform-light">Descar mi CV</button> -->
             </div>
             <div (click)="selectImage()" class="widget-user-image" style="cursor: pointer;">
@@ -43,7 +43,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade" id="datos-personales">
-                                <app-datos-personales></app-datos-personales>
+                                <app-datos-personales [datosPersonales]="persona" ></app-datos-personales>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="educacion">
                                 <app-datos-educacion></app-datos-educacion>

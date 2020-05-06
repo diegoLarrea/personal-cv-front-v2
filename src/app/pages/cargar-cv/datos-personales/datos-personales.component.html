@@ -1,33 +1,40 @@
 <div class="row">
+    <div class="col-12 d-md-none text-center">
+        <h5 class="platform-light font-weight-bold animated fadeInDown">Datos Personales</h5>
+    </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="ci">Nro. de documento</label>
         <div class="input-group mb-3">
-            <input class="border border-secondary" type="text" class="form-control" placeholder="" id="ci">
+            <input [(ngModel)]="persona.documento" name="documento" class="border border-secondary" type="text"
+                class="form-control" placeholder="" id="ci">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="nombres">Nombres</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" id="nombres">
+            <input [(ngModel)]="persona.nombres" name="nombres" type="text" class="form-control" placeholder=""
+                id="nombres">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="apellidos">Apellidos</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" id="apellidos">
+            <input [(ngModel)]="persona.apellidos" name="apellidos" type="text" class="form-control" placeholder=""
+                id="apellidos">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="f-nacimiento">F. Nacimiento</label>
         <div class="input-group mb-3">
-            <input type="date" class="form-control" placeholder="" id="f-nacimiento">
+            <input [(ngModel)]="persona.fecha_nacimiento" name="fecha_nacimiento" type="date" class="form-control"
+                placeholder="" id="f-nacimiento">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="sexo">Sexo</label>
         <div class="input-group mb-3">
-            <select class="selectpicker" id="sexo" data-width="100%" title="Elegir"
-                data-style="bg-white border border-gris">
+            <select [(ngModel)]="persona.sexo" name="sexo" class="selectpicker" id="sexo" data-width="100%"
+                title="Elegir" data-style="bg-white border border-gris">
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
             </select>
@@ -36,19 +43,21 @@
     <div class="col-12 col-md-6 col-lg-4">
         <label for="estado-civil">Estado Civil</label>
         <div class="input-group mb-3">
-            <select class="selectpicker" id="estado-civil" data-width="100%" title="Elegir"
-                data-style="bg-white border border-gris">
-                <option value="F">Soltero/a</option>
-                <option value="M">Casado/a</option>
-                <option value="M">Viudo/a</option>
+            <select [(ngModel)]="persona.estado_civil" name="estado_civil" class="selectpicker" id="estado-civil"
+                data-width="100%" title="Elegir" data-style="bg-white border border-gris">
+                <option *ngFor="let i of estadoCivilSelect" [value]="i">{{i}}</option>
+                <!-- <option [value]="'Soltero/a'">Soltero/a</option>
+                <option [value]="'Casado/a'">Casado/a</option>
+                <option [value]="'Viudo/a'">Viudo/a</option> -->
             </select>
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="pais">País Nacimiento</label>
         <div class="input-group mb-3">
-            <select class="selectpicker" data-live-search="true" id="pais" data-width="100%" title="Elegir"
-                data-style="bg-white border border-gris" data-size="10">
+            <select [(ngModel)]="persona.pais_nacimiento" name="pais_nacimiento" class="selectpicker"
+                data-live-search="true" id="pais" data-width="100%" title="Elegir"
+                data-style="bg-white border border-gris" data-size="5">
                 <option *ngFor="let i of paises" [value]="i">{{i}}</option>
             </select>
         </div>
@@ -56,59 +65,122 @@
     <div class="col-12 col-md-6 col-lg-4">
         <label for="ciudad">Ciudad Residencia</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" id="ciudad">
+            <input [(ngModel)]="persona.ciudad_residencia" name="ciudad_residencia" type="text" class="form-control"
+                placeholder="" id="ciudad">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="email">Email</label>
         <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="" id="email">
+            <input [(ngModel)]="persona.email" name="email" type="email" class="form-control" placeholder="" id="email">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="cel-1">Celular 1</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" id="cel-1">
+            <input [(ngModel)]="persona.cel_1" name="cel_1" type="text" class="form-control" placeholder="" id="cel-1">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="cel-2">Celular 2</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" id="cel-2">
+            <input [(ngModel)]="persona.cel_2" name="cel_2" type="text" class="form-control" placeholder="" id="cel-2">
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="tel">Teléfono</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" id="tel">
+            <input [(ngModel)]="persona.telefono" name="telefono" type="text" class="form-control" placeholder=""
+                id="tel">
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-12 col-md-6">
-        <div class="card shadow-none">
-            <div class="card-body border border-gris border-radius">
-                <div class="form-check">
-                    <input [(ngModel)]="checkFamiliares" class="form-check-input" type="checkbox" value=""
-                        id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Tengo familiar(es) que trabaja(n) en Personal ( * )
-                    </label>
+        <div class="card shadow-none border border-gris border-radius">
+            <div class="card-header" [class.card-header-bb]="!checkFamiliares">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input [(ngModel)]="checkFamiliares" name="familiares" class="form-check-input"
+                                type="checkbox" value="" id="check-familiares"
+                                (change)="collapse(checkFamiliares, 'familiares-collapse')">
+                            <label class="form-check-label" for="check-familiares">
+                                Tengo familiar(es) que trabaja(n) en Personal
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body collapse" id="familiares-collapse">
+                <div class="row">
+                    <div *ngFor="let i of familiares; index as j;" class="col-12">
+                        <div class="input-group mb-2">
+                            <input [(ngModel)]="i.nombre" name="familiar-{{j}}" type="text" class="form-control"
+                                placeholder="Nombre del familiar" aria-label="Nombre del familiar"
+                                aria-describedby="btn-add-familiar">
+                            <div class="input-group-append">
+                                <button (click)="familiares.splice(j,1)"
+                                    class="btn btn-sm bg-rosado text-white border-rosado border-radius" type="button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button (click)="addFamiliar()"
+                            class="btn btn-sm bg-rosado border-rosado platform-regular text-white">Agregar (
+                            {{familiares.length}} )</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card shadow-none">
-            <div class="card-body border border-gris border-radius">
-                <div class="form-check">
-                    <input [(ngModel)]="checkHeTrabajado" class="form-check-input" type="checkbox" value=""
-                        id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        He trabajo en Personal ( * )
-                    </label>
+        <div class="card shadow-none border border-gris border-radius">
+            <div class="card-header" [class.card-header-bb]="!checkHeTrabajado">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input [(ngModel)]="checkHeTrabajado" name="ha_trabajado" class="form-check-input"
+                                type="checkbox" value="" id="check-he-trabajado"
+                                (change)="collapse(checkHeTrabajado, 'he-trabajado-collapse')">
+                            <label class="form-check-label" for="check-he-trabajado">
+                                He trabajado en Personal
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body collapse" id="he-trabajado-collapse">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="he-trabajado-cargo">Cargo</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="heTrabajado.cargo" name="he-trabajado-cargo" type="text"
+                                class="form-control" placeholder="" id="he-trabajado-cargo">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="he-trabajado-supervisor">Supervisor</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="heTrabajado.supervisor" name="he-trabajado-supervisor" type="text"
+                                class="form-control" placeholder="" id="he-trabajado-supervisor">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="he-trabajado-donde">¿Dónde?</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="heTrabajado.donde" name="he-trabajado-donde" type="text"
+                                class="form-control" placeholder="" id="he-trabajado-donde">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-12 text-center py-3">
+        <button (click)="actualizar()" class="btn btn-lg bg-rosado border-rosado text-white platform-regular">Actualizar
+            datos</button>
     </div>
 </div>
