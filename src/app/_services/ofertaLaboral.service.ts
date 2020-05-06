@@ -42,6 +42,6 @@ export class OfertaLaboralService {
 
         params = params.append("filters", JSON.stringify(filter));
 
-        return this.http.get("/api/oferta", { params: params });
+        return this.http.get("/api/empleo", { params: params });
     }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-
+import { AuthenticationService } from '../_services/authentication.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  SITE_KEY = "6LdOFPMUAAAAAM7H527IQBmGar4vx1ccW3YZCUcz";
   repeatPass = null;
   user = {
     nombres: null,
@@ -18,41 +19,77 @@ export class RegisterComponent implements OnInit {
     documento: null,
     email: null,
     password: null
-  }
-  constructor(private apiUser: UserService, private toastr: ToastrService, private router: Router) { }
+  };
+
+  myGroup = new FormGroup({
+    recaptchaReactive: new FormControl()
+  });
+
+  constructor(
+    private toastr: ToastrService, 
+    private router: Router, 
+    private auth: AuthenticationService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  captcha = false;
   postUser(){
-    if(this.validateUser()){
-      if(this.user.password == this.repeatPass){
-        this.apiUser.post(this.user).subscribe(
-          data => {
-            this.router.navigate(["login"]);
-          },
-          error => {
-            if(error.hasOwnProperty("error")){
+    let result = this.validateUser();
+    if(result.res){
+      this.auth.registrarse(this.user).subscribe(
+        data => {
+          this.toastr.info("Usuario creado");
+          this.router.navigate(["login"]);
+        },
+        error => {
+          if(error.hasOwnProperty("error")){
+            if(error.error.hasOwnProperty("mensaje")){
               this.toastr.error(error.error.mensaje);
             }else {
               this.toastr.error("Error al crear cuenta")
             }
+          }else {
+            this.toastr.error("Error al crear cuenta")
           }
-        )
-      }else{
-        this.toastr.error("Las contraseñas no coinciden");
-      }
+        }
+      )
     }else {
-      this.toastr.error("Complete los campos");
+      this.toastr.error(result.msj);
     }
   }
 
-  validateUser(): boolean {
-    return this.user.nombres != null &&
+  validateUser() {
+    if(!(this.user.nombres != null &&
     this.user.apellidos != null &&
     this.user.documento != null &&
     this.user.email != null &&
     this.user.password != null &&
-    this.repeatPass != null
+    this.repeatPass != null))
+      return {res: false, msj: "Complete los campos"};
+    
+    if(this.user.password != this.repeatPass){
+      return {res: false, msj: "Las contraseñas no coinciden"};
+    }
+
+    if(!this.captcha){
+      return {res: false, msj: "Verifique captcha"};
+    }
+
+    return {res:true}
+  }
+
+  resolved(captchaResponse: string) {
+    this.auth.captcha({captcha:captchaResponse}).subscribe(
+      data => {
+        if(!data.success){
+          grecaptcha.reset();
+          this.toastr.error("Error al resolver captcha"); 
+        }
+        this.captcha = data.success;
+      }
+    )
+    
   }
 }

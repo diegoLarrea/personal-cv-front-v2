@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../_services/user.service';
-import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
-import { TokenStorageService } from '../_services/token.service';
+import { AuthenticationService } from '../_services/authentication.service';
+import { NgxPermissionsService } from 'ngx-permissions';
 declare var $: any;
 @Component({
   selector: 'app-pages',
@@ -14,20 +14,25 @@ export class PagesComponent implements OnInit {
 
   layout = true;
   current = null;
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private apiUser: UserService,
-    private apiAuth: AuthService,
-    private tokenService: TokenStorageService) {
+    private auth: AuthenticationService,
+    private permissionsService: NgxPermissionsService) {
     // this.layout = this.route.snapshot.firstChild.data.layout;
-    
+
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         let idActive = this.route.snapshot.firstChild.data.id;
-        let obj = this.sideOptions.find(it =>{
+        let obj = this.sideOptionsPublic.find(it => {
           return it.id == idActive;
         });
-        if(this.current != null){
+        if(obj == null){
+          obj = this.sideOptionsAdmin.find(it => {
+            return it.id == idActive;
+          });
+        }
+        if (this.current != null) {
           this.current.active = false;
         }
         obj.active = true;
@@ -38,8 +43,18 @@ export class PagesComponent implements OnInit {
 
   hasCollapse = false;
   user: User = new User();
-  ngOnInit(): void {
-    this.apiUser.getById(this.apiAuth.getUserId()).subscribe(
+  ngOnInit() {
+    this.auth.permisos().subscribe(
+      data => {
+        let perms = [];
+        for (let i = 0; i < data.length; i++) {
+          perms.push(data[i].codename);
+        }
+        this.permissionsService.loadPermissions(perms);
+        console.log(data);
+      }
+    )
+    this.apiUser.getById(this.auth.getUser()).subscribe(
       data => {
         this.user = data;
       }
@@ -48,18 +63,13 @@ export class PagesComponent implements OnInit {
 
   sideFunction() { this.hasCollapse = !$("body").hasClass("sidebar-collapse"); }
 
-  salir(){
-    this.tokenService.signOut();
-    this.router.navigate([""]);
+  salir() {
+    this.auth.logout();
   }
 
-  sideOptions = [
+  sideOptionsPublic = [
     {
-      id: null,
-      title: "MENÚ",
-      isTitle: true
-    },
-    {
+      permiso: "api_listar_empleos",
       id: 1,
       title: "Empleos disponibles",
       route: "/portal/empleos-disponibles",
@@ -68,6 +78,7 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
+      permiso: "api_editar_persona",
       id: 2,
       title: "Cargar CV",
       route: "/portal/cargar-cv",
@@ -76,19 +87,19 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
+      permiso: "api_listar_postulaciones",
       id: 3,
       title: "Postulaciones",
       route: "/portal/postulaciones",
       icon: "nav-icon fas fa-star",
       active: false,
       isTitle: false
-    },
+    }
+  ];
+
+  sideOptionsAdmin = [
     {
-      id: null,
-      title: "ADMINISTRACIÓN",
-      isTitle: true
-    },
-    {
+      permiso: "a_cambiar",
       id: 4,
       title: "Currículums",
       route: "/portal/curriculums",
@@ -97,6 +108,7 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
+      permiso: "a_cambiar",
       id: 5,
       title: "Empleos",
       route: "/portal/empleos",
@@ -105,6 +117,7 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
+      permiso: "a_cambiar",
       id: 6,
       title: "Ajustes",
       route: "/portal/ajustes",
@@ -113,6 +126,7 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
+      permiso: "a_cambiar",
       id: 7,
       title: "Usuarios",
       route: "/portal/usuarios",

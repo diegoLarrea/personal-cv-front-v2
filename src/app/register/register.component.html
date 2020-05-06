@@ -1,5 +1,9 @@
 <div class="container-fluid bg min-vh-100">
     <div class="row min-vh-100">
+        <div class="col-12 d-none d-md-block text-center p-2">
+            <img src="assets/images/personal_logo.png" alt="">
+            <h4 class="text-white platform-regular">Portal de Empleos - Registro</h4>
+        </div>
         <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 my-auto">
             <div class="card py-3 animated fadeIn my-3">
                 <div class="card-body">
@@ -9,34 +13,54 @@
                             <h4>Portal de Empleos</h4>
                         </div>
                         <div class="col-12 col-md-6 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="nombre">Nombres</label>
-                            <input [(ngModel)]="user.nombres" name="nombres" type="text" class="form-control" id="nombre">
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light"
+                                for="nombre">Nombres</label>
+                            <input [(ngModel)]="user.nombres" name="nombres" type="text" class="form-control"
+                                id="nombre">
                         </div>
                         <div class="col-12 col-md-6 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="apellidos">Apellidos</label>
-                            <input [(ngModel)]="user.apellidos" name="apellidos" type="text" class="form-control" id="apellidos">
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light"
+                                for="apellidos">Apellidos</label>
+                            <input [(ngModel)]="user.apellidos" name="apellidos" type="text" class="form-control"
+                                id="apellidos">
                         </div>
                         <div class="col-12 col-md-6 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="documento">Nro. Documento</label>
-                            <input [(ngModel)]="user.documento" name="documento" type="text" class="form-control" id="documento">
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light"
+                                for="documento">Nro. Documento</label>
+                            <input [(ngModel)]="user.documento" name="documento" type="text" class="form-control"
+                                id="documento">
                         </div>
                         <div class="col-12 col-md-6 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="email">Correo Electrónico</label>
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light"
+                                for="email">Correo Electrónico</label>
                             <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="email">
                         </div>
                         <div class="col-12 col-md-6 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="pass">Contraseña</label>
-                            <input [(ngModel)]="user.password" name="password"  name="pass" type="password" class="form-control" id="pass">
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light"
+                                for="pass">Contraseña</label>
+                            <input [(ngModel)]="user.password" name="password" name="pass" type="password"
+                                class="form-control" id="pass">
                         </div>
                         <div class="col-12 col-md-6 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="pass-repeat">Repetir Contraseña</label>
-                            <input [(ngModel)]="repeatPass" name="pass-repeat" type="password" class="form-control" id="pass-repeat">
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light"
+                                for="pass-repeat">Repetir Contraseña</label>
+                            <input [(ngModel)]="repeatPass" name="pass-repeat" type="password" class="form-control"
+                                id="pass-repeat">
+                        </div>
+                        <div class="col-12 p-2" [formGroup]="myGroup">
+                            <div class="w-100 text-center">
+                                <re-captcha class="d-inline-block" (resolved)="resolved($event)" formControlName="recaptchaReactive"
+                                    siteKey="{{SITE_KEY}}">
+                                </re-captcha>
+                            </div>
                         </div>
                         <div class="col-10 offset-1 col-md-6 offset-md-3">
-                            <button (click)="postUser()" type="submit" class="btn btn-block bg-rosado border-rosado platform-regular text-white">Registrarse</button>
+                            <button (click)="postUser()" type="submit"
+                                class="btn btn-block bg-rosado border-rosado platform-regular text-white">Registrarse</button>
                         </div>
                         <div class="col-12 text-center mt-4 text-black-50">
-                            ¿Ya tienes una cuenta? <a routerLink="/login" href="#"><span class="text-rosado platform-regular">Ingresar</span></a>
+                            ¿Ya tienes una cuenta? <a routerLink="/login" href="#"><span
+                                    class="text-rosado platform-regular">Ingresar</span></a>
                         </div>
                     </form>
                 </div>
@@ -44,7 +68,6 @@
         </div>
     </div>
 </div>
-<div class="logo-lg text-center animated fadeInRight d-none d-md-block">
-    <img src="assets/images/personal_logo.png" alt="">
-    <h4 class="text-white platform-regular">Portal de Empleos - Registro</h4>
-</div>
+<!-- <div class="logo-lg text-center animated fadeInRight d-none d-md-block">
+    
+</div> -->

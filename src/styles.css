@@ -83,3 +83,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .bg-negro {
   background-color: #343a40 !important;
 }
+
+.btn-outline-negro {
+  border: 1px solid #343a40 !important;
+  color: #343a40 !important;
+  background-color: #ffffff !important;
+}
+
+.btn-outline-negro:hover {
+  background-color: #343a40 !important;
+  color: #ffffff !important;
+}

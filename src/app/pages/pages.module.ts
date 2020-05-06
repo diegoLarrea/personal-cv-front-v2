@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ParticlesModule } from 'angular-particle';
-
+import { NgxPermissionsModule } from 'ngx-permissions';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { CargarCvComponent } from './cargar-cv/cargar-cv.component';
@@ -38,6 +38,7 @@ import { DatosReferenciasComponent } from './cargar-cv/datos-referencias/datos-r
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
+    NgxPermissionsModule.forRoot(),
     PagesRoutingModule
   ]
 })

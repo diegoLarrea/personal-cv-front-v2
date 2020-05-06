@@ -33,42 +33,48 @@ const routes: Routes = [
         component: CargarCvComponent,
         data: {
           id: 2
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: "postulaciones",
         component: PostulacionesComponent,
         data: {
           id: 3
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: "curriculums",
         component: CurriculumsComponent,
         data: {
           id: 4
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: "empleos",
         loadChildren: () => import('./empleos/empleos.module').then(m => m.EmpleosModule),
         data: {
           id: 5
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: "ajustes",
         component: AjustesComponent,
         data: {
           id: 6
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: "usuarios",
         component: UsuariosComponent,
         data: {
           id: 7
-        }
+        },
+        canActivate: [AuthGuardService]
       }
     ]
   }

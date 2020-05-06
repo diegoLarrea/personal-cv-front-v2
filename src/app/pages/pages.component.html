@@ -59,12 +59,19 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column">
-                    <li *ngFor="let i of sideOptions" [class.nav-item]="!i.isTitle" [class.nav-header]="i.isTitle" class="platform-regular">
-                        <a *ngIf="!i.isTitle" routerLink="{{i.route}}" href="#" class="nav-link" [class.active]="i.active">
+                    <li class="nav-header platform-regular">MENÚ</li>
+                    <li *ngFor="let i of sideOptionsPublic" class="nav-item platform-regular">
+                        <a *ngxPermissionsOnly="[i.permiso]" routerLink="{{i.route}}" href="#" class="nav-link" [class.active]="i.active">
                             <i class="{{i.icon}}"></i>
                             <p class="platform-regular">{{i.title}}</p>
                         </a>
-                        <span *ngIf="i.isTitle">{{i.title}}</span>
+                    </li>
+                    <li *ngxPermissionsOnly="['a_cambiar']" class="nav-header platform-regular">ADMINISTRACIÓN</li>
+                    <li *ngFor="let i of sideOptionsAdmin" class="nav-item platform-regular">
+                        <a *ngxPermissionsOnly="[i.permiso]" routerLink="{{i.route}}" href="#" class="nav-link" [class.active]="i.active">
+                            <i class="{{i.icon}}"></i>
+                            <p class="platform-regular">{{i.title}}</p>
+                        </a>
                     </li>
                 </ul>
             </nav>

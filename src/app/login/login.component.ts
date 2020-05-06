@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { TokenStorageService } from '../_services/token.service';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthenticationService } from '../_services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,25 +12,35 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AuthService, private token: TokenStorageService, private router: Router) { }
+  constructor(
+    private auth: AuthenticationService, 
+    private router: Router,
+    private toastr: ToastrService,
+    private http: HttpClient
+  ) { }
 
   helper = new JwtHelperService();
 
-  user: string = "";
-  pass: string = "";
+  user: string = null;
+  pass: string = null;
   
   ngOnInit(): void {
   }
 
   login(){
-    this.auth.login(this.user, this.pass).subscribe(
-      data => {
-        this.token.saveToken(JSON.stringify(data));    
-        this.router.navigate(['portal']);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    if(this.user != null && this.pass != null){
+      this.auth.login(this.user, this.pass).subscribe(
+        data => {
+          this.auth.saveToken(data.access);
+          this.router.navigate(['portal']);
+        },
+        error => {
+          this.toastr.error("Usuario y/o contraseña inválida");
+        }
+      )
+    }else{
+      this.toastr.error("Complete los campos");
+    }    
+    
   }
 }

@@ -8,12 +8,13 @@ import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PagesModule } from './pages/pages.module';
 import { authInterceptorProviders } from './_services/interceptor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -40,6 +41,9 @@ export function tokenGetter() {
     ParticlesModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
+    RecaptchaModule,
+    ReactiveFormsModule,
+    RecaptchaFormsModule,
     AppRoutingModule
   ],
   providers: [authInterceptorProviders],
