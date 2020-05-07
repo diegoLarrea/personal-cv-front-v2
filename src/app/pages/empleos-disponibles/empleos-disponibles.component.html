@@ -27,7 +27,7 @@
                     <select [(ngModel)]="filters.areas" name="areas" id="areas" data-selected-text-format="count"
                         multiple data-live-search="true" class="selectpicker mb-3" data-width="100%" title="Áreas"
                         data-style="bg-white border border-gris">
-                        <option *ngFor="let i of areas" title="{{i.nombre}}" [value]="i">{{i.nombre}}</option>
+                        <option *ngFor="let i of areas" title="{{i.nombre}}" [value]="i.id">{{i.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-12 col-md-6">
@@ -35,7 +35,7 @@
                         multiple data-live-search="true" class="selectpicker mb-3" data-width="100%"
                         title="Localidades" data-style="bg-white border border-gris">
                         <option *ngFor="let i of localidades" attr.data-subtext="{{i.direccion}}" title="{{i.nombre}}"
-                            [value]="i">{{i.nombre}}</option>
+                            [value]="i.id">{{i.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-12">

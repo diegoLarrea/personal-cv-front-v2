@@ -10,10 +10,10 @@ export class PersonaService {
   constructor(private http: HttpClient) {}
 
   getByUserId(id): Observable<any>{
-    return this.http.get(`api/persona/${id}`);
+    return this.http.get(`api/public/persona/${id}`);
   }
 
   putByUserId(id, body): Observable<any>{
-    return this.http.put(`api/persona/${id}`, body);
+    return this.http.put(`api/public/persona/${id}`, body);
   }
 }

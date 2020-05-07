@@ -44,18 +44,14 @@ export class PagesComponent implements OnInit {
   hasCollapse = false;
   user: User = new User();
   ngOnInit() {
-    this.auth.permisos().subscribe(
+    this.auth.obtenerUsuarioLogueado().subscribe(
       data => {
+        this.user = data.usuario;
         let perms = [];
-        for (let i = 0; i < data.length; i++) {
-          perms.push(data[i].codename);
+        for (let i = 0; i < data.permisos.length; i++) {
+          perms.push(data.permisos[i].codename);
         }
         this.permissionsService.loadPermissions(perms);
-      }
-    )
-    this.apiUser.getById(this.auth.getUser()).subscribe(
-      data => {
-        this.user = data;
       }
     )
   }
@@ -68,7 +64,6 @@ export class PagesComponent implements OnInit {
 
   sideOptionsPublic = [
     {
-      permiso: "api_listar_empleos",
       id: 1,
       title: "Empleos disponibles",
       route: "/portal/empleos-disponibles",
@@ -77,7 +72,6 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
-      permiso: "api_editar_persona",
       id: 2,
       title: "Cargar CV",
       route: "/portal/cargar-cv",
@@ -86,7 +80,6 @@ export class PagesComponent implements OnInit {
       isTitle: false
     },
     {
-      permiso: "api_listar_postulaciones",
       id: 3,
       title: "Postulaciones",
       route: "/portal/postulaciones",
@@ -98,7 +91,6 @@ export class PagesComponent implements OnInit {
 
   sideOptionsAdmin = [
     {
-      permiso: "a_cambiar",
       id: 4,
       title: "Currículums",
       route: "/portal/curriculums",

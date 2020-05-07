@@ -27,7 +27,7 @@ export class OfertaLaboralService {
         if (areas.length > 0) {
             let a = [];
             for (let i = 0; i < areas.length; i++) {
-                a.push({ id: areas[i].id });
+                a.push({ id: areas[i] });
             }
             filter["areas"] = a;
         }
@@ -35,13 +35,17 @@ export class OfertaLaboralService {
         if (localidades.length > 0) {
             let l = [];
             for (let i = 0; i < localidades.length; i++) {
-                l.push({ id: localidades[i].id });
+                l.push({ id: localidades[i] });
             }
             filter["localidades"] = l;
         }
 
         params = params.append("filters", JSON.stringify(filter));
 
-        return this.http.get("/api/empleo", { params: params });
+        return this.http.get("/api/public/empleos", { params: params });
+    }
+
+    obtenerFiltros(): Observable<any> {
+        return this.http.get(`api/public/empleos/obtener-filtros`);
     }
 }

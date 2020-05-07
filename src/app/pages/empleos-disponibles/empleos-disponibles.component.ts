@@ -37,32 +37,21 @@ export class EmpleosDisponiblesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOfertas(this.p);
-    this.getAreas();
-    this.getLocalidades();
+    this.getFiltros();
     $('select').selectpicker();
   }
 
-  getAreas(){
-    this.apiArea.getAreas().subscribe(
+  getFiltros(){
+    this.apiOferta.obtenerFiltros().subscribe(
       data => {
-        this.areas = data;
-        setTimeout(()=>{
-          $('select').selectpicker('refresh');
-        },0)
+        this.areas = data.areas;
+        this.localidades = data.localidades;
+        setTimeout(()=> {
+          $("select").selectpicker("refresh")
+        })
       }
     )
   }
-  getLocalidades(){
-    this.apiLocalidad.getLocalidades().subscribe(
-      data => {
-        this.localidades = data;
-        setTimeout(()=>{
-          $('select').selectpicker('refresh');
-        },0)
-      }
-    )
-  }
-
   getOfertas(page){
     this.loading =  true;
     this.apiOferta.getOfertasLaborales(page, this.filters.buscar, this.filters.itemspp, this.filters.areas, this.filters.localidades).subscribe(

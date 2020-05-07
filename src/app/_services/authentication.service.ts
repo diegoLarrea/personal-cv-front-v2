@@ -35,8 +35,8 @@ export class AuthenticationService {
         return this.http.post(`api/captcha`, body)
     }
 
-    public permisos(): Observable<any>{
-        return this.http.get(`api/permisos`);
+    public obtenerUsuarioLogueado(): Observable<any>{
+        return this.http.get(`api/obtener-usuario-logueado`);
     }
 
     public logout(){

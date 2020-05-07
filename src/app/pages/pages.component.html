@@ -61,7 +61,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column">
                     <li class="nav-header platform-regular">MENÚ</li>
                     <li *ngFor="let i of sideOptionsPublic" class="nav-item platform-regular">
-                        <a *ngxPermissionsOnly="[i.permiso]" routerLink="{{i.route}}" href="#" class="nav-link" [class.active]="i.active">
+                        <a routerLink="{{i.route}}" href="#" class="nav-link" [class.active]="i.active">
                             <i class="{{i.icon}}"></i>
                             <p class="platform-regular">{{i.title}}</p>
                         </a>
