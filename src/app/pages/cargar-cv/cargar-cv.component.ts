@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { PersonaService } from 'src/app/_services/persona.service';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { Persona } from 'src/app/_models/persona';
+import { Educacion } from 'src/app/_models/educacion';
+import { EducacionService } from 'src/app/_services/educacion.service';
 declare var $:any;
 @Component({
   selector: 'app-cargar-cv',
@@ -13,10 +15,12 @@ export class CargarCvComponent implements OnInit {
 
   constructor(private toastr: ToastrService,
     private apiPersona: PersonaService,
+    private apiEdu: EducacionService,
     private auth: AuthenticationService) { }
 
   img = null;
   persona: Persona = new Persona();
+  educacion: Educacion[] = [];
   ngOnInit(): void {
     this.activaTab('datos-personales');
     this.apiPersona.getByUserId(this.auth.getUser()).subscribe(
@@ -52,8 +56,6 @@ export class CargarCvComponent implements OnInit {
     }else{
       this.toastr.error("Tipo de archivo no permitido");
     }
-
-    console.log(this.img); 
   }
 
   toBase64 = file => new Promise((resolve, reject) => {

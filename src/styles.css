@@ -65,6 +65,7 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
+input[type="file"]:focus,
 .uneditable-input:focus,
 .custom-select:focus,
 .selectpicker:focus {   
@@ -92,4 +93,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .btn-outline-negro:hover {
   background-color: #343a40 !important;
   color: #ffffff !important;
+}
+
+.disable-input {
+  opacity: 0.8;
+  pointer-events: none;
 }

@@ -30,38 +30,63 @@
                 placeholder="" id="f-nacimiento">
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <!-- <div class="col-12 col-md-6 col-lg-4">
         <label for="sexo">Sexo</label>
         <div class="input-group mb-3">
-            <select [(ngModel)]="persona.sexo" name="sexo" class="selectpicker" id="sexo" data-width="100%"
+            <select [(ngModel)]="persona.sexo" name="sexo" class="selectpicker dp-select" id="sexo" data-width="100%"
                 title="Elegir" data-style="bg-white border border-gris">
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
+            </select>
+        </div>
+    </div> -->
+    <!-- <div class="col-12 col-md-6 col-lg-4">
+        <label for="estado-civil">Estado Civil</label>
+        <div class="input-group mb-3">
+            <select [(ngModel)]="persona.estado_civil" name="estado_civil" class="selectpicker dp-select" id="estado-civil"
+                data-width="100%" title="Elegir" data-style="bg-white border border-gris">
+                <option *ngFor="let i of estadoCivilSelect" [value]="i">{{i}}</option>
+            </select>
+        </div>
+    </div> -->
+    <div class="col-12 col-md-6 col-lg-4">
+        <label for="sexo">Sexo</label>
+        <div class="input-group mb-3">
+            <select [(ngModel)]="persona.sexo" name="sexo" class="custom-select" id="sexo">
+                <option selected disabled>Elegir</option>
+                <option [value]="'F'">Femenino</option>
+                <option [value]="'M'">Masculino</option>
             </select>
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
         <label for="estado-civil">Estado Civil</label>
         <div class="input-group mb-3">
-            <select [(ngModel)]="persona.estado_civil" name="estado_civil" class="selectpicker" id="estado-civil"
-                data-width="100%" title="Elegir" data-style="bg-white border border-gris">
+            <select [(ngModel)]="persona.estado_civil" name="estado-civil" class="custom-select" id="estado-civil">
+                <option selected disabled>Elegir</option>
                 <option *ngFor="let i of estadoCivilSelect" [value]="i">{{i}}</option>
-                <!-- <option [value]="'Soltero/a'">Soltero/a</option>
-                <option [value]="'Casado/a'">Casado/a</option>
-                <option [value]="'Viudo/a'">Viudo/a</option> -->
             </select>
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4">
+        <label for="pais">País</label>
+        <div class="input-group mb-3">
+            <select [(ngModel)]="persona.pais_nacimiento" name="pais" class="custom-select" id="pais">
+                <option selected disabled>Elegir</option>
+                <option *ngFor="let i of paises" [value]="i">{{i}}</option>
+            </select>
+        </div>
+    </div>
+    <!-- <div class="col-12 col-md-6 col-lg-4">
         <label for="pais">País Nacimiento</label>
         <div class="input-group mb-3">
-            <select [(ngModel)]="persona.pais_nacimiento" name="pais_nacimiento" class="selectpicker"
+            <select [(ngModel)]="persona.pais_nacimiento" name="pais_nacimiento" class="selectpicker dp-select"
                 data-live-search="true" id="pais" data-width="100%" title="Elegir"
                 data-style="bg-white border border-gris" data-size="5">
                 <option *ngFor="let i of paises" [value]="i">{{i}}</option>
             </select>
         </div>
-    </div>
+    </div> -->
     <div class="col-12 col-md-6 col-lg-4">
         <label for="ciudad">Ciudad Residencia</label>
         <div class="input-group mb-3">

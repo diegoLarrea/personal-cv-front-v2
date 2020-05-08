@@ -20,7 +20,6 @@ export class DatosPersonalesComponent implements OnInit {
       this.checkHeTrabajado = true;
       $('#familiares-collapse').collapse('show');
       let value = JSON.parse(this.persona.ha_trabajado);
-      console.log(value);
       this.heTrabajado.cargo = value.cargo;
       this.heTrabajado.supervisor = value.supervisor;
       this.heTrabajado.donde = value.donde;
@@ -30,15 +29,13 @@ export class DatosPersonalesComponent implements OnInit {
       this.checkFamiliares = true;
       $('#he-trabajado-collapse').collapse('show');
       let values = JSON.parse(this.persona.familiares);
-      console.log(values);
       this.familiares = [];
       for(let i=0; i<values.length; i++){
         this.familiares.push(values[i]);
       }
     }
-
     setTimeout(()=>{
-      $("select").selectpicker('refresh');
+      $(".dp-select").selectpicker('refresh');
     },0)
   }
 
@@ -57,15 +54,10 @@ export class DatosPersonalesComponent implements OnInit {
 
   ngOnInit(): void {
     this.paises = Paises.paises;
-  
-   
     this.addFamiliar();
-
     setTimeout(()=>{
-      $("select").selectpicker('refresh');
+      $(".dp-select").selectpicker('refresh');
     },0)
-
-
   }
 
   getPersona(){
