@@ -2,3 +2,7 @@ label {
     font-family: 'Platform-Light';
     margin: 0 0 4px; 
 }
+
+.card-header {
+    cursor: pointer;
+}

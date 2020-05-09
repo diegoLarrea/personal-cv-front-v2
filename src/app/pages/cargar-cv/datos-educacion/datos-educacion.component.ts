@@ -39,6 +39,8 @@ export class DatosEducacionComponent implements OnInit {
       nombre: "Nativo"
     }
   ]
+  collapseEdu = [];
+  collapseIdio = [];
   ngOnInit(): void {
     this.paises = Paises.paises;
     this.getEducacion();
@@ -54,6 +56,7 @@ export class DatosEducacionComponent implements OnInit {
           if(this.educacion[i].id != null){
             this.educacion[i].documento = JSON.parse(this.educacion[i].documento);
           }
+          this.collapseEdu.push(true);
         }
       }
     )
@@ -64,8 +67,11 @@ export class DatosEducacionComponent implements OnInit {
       edu.user = Number(this.auth.getUser());
       this.apiEdu.post(edu).subscribe(
         data => {
+          this.educacion[this.educacion.length-1] = data;
+          this.collapseEdu[this.educacion.length-1] = true;
+          this.educacion.push(new Educacion());
+          this.collapseEdu.push(true);
           this.toastr.success("Dato académico agregado");
-          this.getEducacion();
         },
         error => {
           this.toastr.error("Error al guardar dato académico");
@@ -90,11 +96,12 @@ export class DatosEducacionComponent implements OnInit {
     }
   }
 
-  deleteEducacion(id) {
+  deleteEducacion(id, j) {
     this.apiEdu.delete(id).subscribe(
       data => {
+        this.educacion.splice(j,1);
+        this.collapseEdu.splice(j,1);
         this.toastr.success("Dato académico eliminado");
-        this.getEducacion();
       },
       error => {
         this.toastr.error("Error al eliminar dato académico");
@@ -163,6 +170,8 @@ export class DatosEducacionComponent implements OnInit {
       data => {
         this.idiomas = data;
         this.idiomas.push(new Idioma());
+
+        for(let i=0; i<this.idiomas.length; i++){this.collapseIdio.push(true)}
       }
     )
   }
@@ -172,8 +181,11 @@ export class DatosEducacionComponent implements OnInit {
       obj.user = Number(this.auth.getUser());
       this.apiEdu.postIdioma(obj).subscribe(
         data => {
+          this.idiomas[this.idiomas.length-1] = data;
+          this.collapseIdio[this.idiomas.length-1] = true;
+          this.idiomas.push(new Idioma());
+          this.collapseIdio.push(true);
           this.toastr.success("Idioma agregado");
-          this.getIdiomas();
         },
         error => {
           this.toastr.error("Error al guardar idioma");
@@ -198,11 +210,12 @@ export class DatosEducacionComponent implements OnInit {
     }
   }
 
-  deleteIdioma(id){
+  deleteIdioma(id, j){
     this.apiEdu.deleteIdioma(id).subscribe(
       data => {
         this.toastr.success("Idioma eliminado");
-        this.getIdiomas();
+        this.idiomas.splice(j,1);
+        this.collapseIdio.splice(j,1);
       },
       error => {
         this.toastr.error("Error al eliminar idioma");

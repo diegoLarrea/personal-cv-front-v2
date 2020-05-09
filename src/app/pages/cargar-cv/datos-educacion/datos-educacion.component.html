@@ -1,12 +1,23 @@
 <div class="row">
     <div class="col-12">
         <h5 class="platform-regular">Educación <span class="badge bg-rosado text-white">{{educacion.length - 1}}
-                registros</span></h5>
+                registro(s)</span></h5>
         <hr />
     </div>
     <div *ngFor="let i of educacion; index as j;" class="col-12">
-        <div class="card">
-            <div class="card-body">
+        <div class="card shadow-none border border-gris border-radius">
+            <div (click)="collapseEdu[j]=!collapseEdu[j]" data-toggle="collapse" attr.href="#collapse-{{j}}" class="card-header">
+                <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseEdu[j]? 'down':'up'}}"></i></a>
+                <div class="row">
+                    <div *ngIf="i.id == null" class="col-12">
+                        <h5 class="card-title platform-regular text-rosado">Nuevo registro</h5>
+                    </div>
+                    <div *ngIf="i.id != null" class="col-12">
+                        <h5 class="card-title platform-regular">{{j+ 1}}- {{i.titulo}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body collapse" id="collapse-{{j}}">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <label>Institución</label>
@@ -58,7 +69,7 @@
                     <div class="col-12 col-sm-4 col-md-4 col-lg-2">
                         <label>Hasta</label>
                         <div class="input-group mb-3">
-                            <input [attr.disabled]="i.estudiando?'':null" [(ngModel)]="i.hasta" name="hasta-{{j}}"
+                            <input [(ngModel)]="i.hasta" name="hasta-{{j}}"
                                 type="text" class="form-control" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-sm">
                         </div>
@@ -68,7 +79,7 @@
                             <div (click)="verArchivo(i.documento)" *ngIf="i.id != null" class="input-group-prepend">
                                 <button class="btn btn-outline-negro" type="button" id="input-file-btn-{{j}}">
                                     <span><i class="fas fa-file-download"></i></span>
-                                    <span class="d-none d-md-inline ml-2 ">Ver archivo</span> 
+                                    <span class="d-none d-md-inline ml-2 ">Ver archivo</span>
                                 </button>
                             </div>
                             <div class="custom-file">
@@ -85,7 +96,7 @@
                             class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
                         <button (click)="putEducacion(i)" *ngIf="i.id != null"
                             class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
-                        <button (click)="deleteEducacion(i.id)" *ngIf="i.id != null"
+                        <button (click)="deleteEducacion(i.id, j)" *ngIf="i.id != null"
                             class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
                     </div>
                 </div>
@@ -94,44 +105,57 @@
     </div>
     <div class="col-12">
         <h5 class="platform-regular">Idiomas <span class="badge bg-rosado text-white mt-2">{{idiomas.length - 1}}
-                registros</span></h5>
+                registro(s)</span></h5>
         <hr />
     </div>
-    <div *ngFor="let i of idiomas; index as j;" class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-            <div class="card-body">
+    <div *ngFor="let i of idiomas; index as j;" class="col-12">
+        <div class="card shadow-none border border-gris border-radius">
+            <div (click)="collapseIdio[j]=!collapseIdio[j]" data-toggle="collapse" attr.href="#collapse-idio-{{j}}" class="card-header">
+                <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseIdio[j]? 'down':'up'}}"></i></a>
                 <div class="row">
-                    <div class="col-12">
+                    <div *ngIf="i.id == null" class="col-12">
+                        <h5 class="card-title platform-regular text-rosado">Nuevo registro</h5>
+                    </div>
+                    <div *ngIf="i.id != null" class="col-12">
+                        <h5 class="card-title platform-regular">{{j+ 1}}- {{i.idioma}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body collapse" id="collapse-idio-{{j}}">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Idioma</label>
                         <div class="input-group mb-3">
                             <input [(ngModel)]="i.idioma" name="idioma-{{j}}" type="text" class="form-control"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Habla</label>
                         <div class="input-group mb-3">
                             <select [(ngModel)]="i.habla" name="habla-{{j}}" class="custom-select"
                                 id="estudiando-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">{{k.nombre}}</option>
+                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
+                                    {{k.nombre}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Lee</label>
                         <div class="input-group mb-3">
-                            <select [(ngModel)]="i.lee" name="lee-{{j}}" class="custom-select"
-                                id="estudiando-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">{{k.nombre}}</option>
+                            <select [(ngModel)]="i.lee" name="lee-{{j}}" class="custom-select" id="estudiando-{{j}}">
+                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
+                                    {{k.nombre}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Escribe</label>
                         <div class="input-group mb-3">
                             <select [(ngModel)]="i.escribe" name="escribe-{{j}}" class="custom-select"
                                 id="estudiando-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">{{k.nombre}}</option>
+                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
+                                    {{k.nombre}}</option>
                             </select>
                         </div>
                     </div>
@@ -140,7 +164,7 @@
                             class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
                         <button (click)="putIdioma(i)" *ngIf="i.id != null"
                             class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
-                        <button (click)="deleteIdioma(i.id)" *ngIf="i.id != null"
+                        <button (click)="deleteIdioma(i.id, j)" *ngIf="i.id != null"
                             class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
                     </div>
                 </div>
