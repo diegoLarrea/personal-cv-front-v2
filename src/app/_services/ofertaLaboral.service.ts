@@ -48,4 +48,8 @@ export class OfertaLaboralService {
     obtenerFiltros(): Observable<any> {
         return this.http.get(`api/public/empleos/obtener-filtros`);
     }
+
+    getEmpleoById(id): Observable<any>{
+        return this.http.get(`api/public/empleos/${id}`);
+    }
 }

@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: "empleos-disponibles",
-        component: EmpleosDisponiblesComponent,
+        loadChildren: () => import('./empleos-disponibles/empleos-disponibles.module').then(m => m.EmpleosDisponiblesModule),
         data: {
           id: 1
         },

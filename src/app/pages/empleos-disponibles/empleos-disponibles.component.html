@@ -49,10 +49,10 @@
     </div>
     <div id="empleos-disponibles" class="row">
         <div *ngFor="let i of ofertas | paginate: { id: 'pagination', itemsPerPage: itemspp, currentPage: p, totalItems: total }; index as j;"
-            class="col-12 col-sm-10 offset-sm-1">
-            <div class="card shadow">
+            class="col-12 col-sm-10 offset-sm-1 col-md-6 offset-md-0">
+            <div class="card">
                 <div class="card-header text-rosado">
-                    <button
+                    <button [routerLink]="['/portal/empleos-disponibles/detalles', i.id]"
                         class="btn btn-sm bg-rosado border-rosado text-white platform-regular float-right mt-2 d-none d-md-block">Ver
                         detalles</button>
                     <h3 class="mb-0 platform-regular">{{i.oportunidad}}</h3>
@@ -67,7 +67,7 @@
                     </p>
                 </div>
                 <div class="card-footer text-muted d-md-none text-center bg-white">
-                    <button
+                    <button [routerLink]="['/portal/empleos-disponibles/detalles', i.id]"
                         class="btn btn-sm bg-rosado border-rosado text-white platform-regular">Ver detalles</button>
                 </div>
             </div>
