@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TableMaganer } from 'src/app/_utils/table.manager';
+import { UserService } from 'src/app/_services/user.service';
+import { Persona } from 'src/app/_models/persona';
 
 @Component({
   selector: 'app-usuarios',
@@ -7,9 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuariosComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  tableManager = new TableMaganer();
+  loading = true;
+  personas: Persona[] = [];
+  p: number = 1;
+  total: number = null;
+  constructor(private apiUser: UserService) {
+    let headers = [
+      { columnName: "Documento", by: "documento" },
+      { columnName: "Nombre", by: "nombres" },
+      { columnName: "F. Nac.", by: "fecha_nacimiento" },
+      { columnName: "Email", by: "email" },
+      { columnName: "Acciones", by: null }
+    ];
+    this.tableManager.init(headers, 1);
   }
 
+  ngOnInit(): void {
+    this.getUsuarios(1);
+  }
+
+  getUsuarios(page){
+    this.loading = true;
+    this.tableManager.params.page = page;
+      this.apiUser.get(this.tableManager.params).subscribe(
+        data => {
+          this.personas = data.items;
+          this.total = data.total;
+          this.p = page;
+          this.loading = false;
+        }
+      )
+  }
+
+  limpiarFiltros(){
+    this.tableManager.reset(1);
+    this.getUsuarios(1);
+  }
 }

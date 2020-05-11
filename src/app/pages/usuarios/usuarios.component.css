@@ -1,0 +1,21 @@
+.loading {
+  background-color: rgba(0, 0, 0, 0.025) !important;
+  pointer-events: none;
+}
+
+th {
+  cursor: pointer;
+}
+
+td {
+  font-size: 14px;
+  font-family: 'Platform-Light';
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #d9186b;
+}
+
+.my-pagination /deep/ .ngx-pagination {
+  padding: 0px !important;
+}

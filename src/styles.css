@@ -37,6 +37,10 @@
   border: 1px solid #d9186b;
 }
 
+.text-gris-claro {
+  color: #dee2e6;
+}
+
 .title-lg {
   font-size: 64px;
 }
@@ -92,6 +96,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .btn-outline-negro:hover {
   background-color: #343a40 !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-rosado {
+  border: 1px solid #d9186b !important;
+  color: #d9186b !important;
+  background-color: #ffffff !important;
+}
+
+.btn-outline-rosado:hover {
+  background-color: #d9186b !important;
   color: #ffffff !important;
 }
 

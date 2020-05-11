@@ -3,10 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { CargarCvComponent } from './cargar-cv/cargar-cv.component';
 import { PostulacionesComponent } from './postulaciones/postulaciones.component';
-import { CurriculumsComponent } from './curriculums/curriculums.component';
 import { AjustesComponent } from './ajustes/ajustes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { EmpleosDisponiblesComponent } from './empleos-disponibles/empleos-disponibles.component';
 import { AuthGuardService } from '../_services/guard';
 
 
@@ -41,14 +39,6 @@ const routes: Routes = [
         component: PostulacionesComponent,
         data: {
           id: 3
-        },
-        canActivate: [AuthGuardService]
-      },
-      {
-        path: "curriculums",
-        component: CurriculumsComponent,
-        data: {
-          id: 4
         },
         canActivate: [AuthGuardService]
       },

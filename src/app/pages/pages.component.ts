@@ -91,10 +91,11 @@ export class PagesComponent implements OnInit {
 
   sideOptionsAdmin = [
     {
-      id: 4,
-      title: "Currículums",
-      route: "/portal/curriculums",
-      icon: "nav-icon fas fa-paste",
+      permiso: "a_cambiar",
+      id: 7,
+      title: "Usuarios",
+      route: "/portal/usuarios",
+      icon: "nav-icon fas fa-user-friends",
       active: false,
       isTitle: false
     },
@@ -113,15 +114,6 @@ export class PagesComponent implements OnInit {
       title: "Ajustes",
       route: "/portal/ajustes",
       icon: "nav-icon fas fa-cog",
-      active: false,
-      isTitle: false
-    },
-    {
-      permiso: "a_cambiar",
-      id: 7,
-      title: "Usuarios",
-      route: "/portal/usuarios",
-      icon: "nav-icon fas fa-user-friends",
       active: false,
       isTitle: false
     }
