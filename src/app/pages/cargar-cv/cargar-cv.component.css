@@ -34,3 +34,7 @@
 .widget-user-image:hover .middle {
   opacity: 1;
 }
+
+.border-3 {
+  border-width: 3px !important;
+}

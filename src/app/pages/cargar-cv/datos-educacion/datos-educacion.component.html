@@ -5,15 +5,15 @@
         <hr />
     </div>
     <div *ngFor="let i of educacion; index as j;" class="col-12">
-        <div class="card shadow-none border border-gris border-radius">
+        <div class="card shadow-none border border-gris border-radius my-1">
             <div (click)="collapseEdu[j]=!collapseEdu[j]" data-toggle="collapse" attr.href="#collapse-{{j}}" class="card-header">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseEdu[j]? 'down':'up'}}"></i></a>
                 <div class="row">
-                    <div *ngIf="i.id == null" class="col-12">
-                        <h5 class="card-title platform-regular text-rosado">Nuevo registro</h5>
+                    <div *ngIf="i.id == null" class="col-12 my-auto">
+                        <h5 class="card-title platform-regular text-rosado m-0">Nuevo registro</h5>
                     </div>
-                    <div *ngIf="i.id != null" class="col-12">
-                        <h5 class="card-title platform-regular">{{j+ 1}}- {{i.titulo}}</h5>
+                    <div *ngIf="i.id != null" class="col-12 my-auto">
+                        <h5 class="card-title platform-regular m-0">{{j+ 1}}- {{i.titulo}}</h5>
                     </div>
                 </div>
             </div>
@@ -109,15 +109,15 @@
         <hr />
     </div>
     <div *ngFor="let i of idiomas; index as j;" class="col-12">
-        <div class="card shadow-none border border-gris border-radius">
+        <div class="card shadow-none border border-gris border-radius my-1">
             <div (click)="collapseIdio[j]=!collapseIdio[j]" data-toggle="collapse" attr.href="#collapse-idio-{{j}}" class="card-header">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseIdio[j]? 'down':'up'}}"></i></a>
                 <div class="row">
-                    <div *ngIf="i.id == null" class="col-12">
-                        <h5 class="card-title platform-regular text-rosado">Nuevo registro</h5>
+                    <div *ngIf="i.id == null" class="col-12 my-auto">
+                        <h5 class="card-title platform-regular text-rosado m-0">Nuevo registro</h5>
                     </div>
-                    <div *ngIf="i.id != null" class="col-12">
-                        <h5 class="card-title platform-regular">{{j+ 1}}- {{i.idioma}}</h5>
+                    <div *ngIf="i.id != null" class="col-12 my-auto">
+                        <h5 class="card-title platform-regular m-0">{{j+ 1}}- {{i.idioma}}</h5>
                     </div>
                 </div>
             </div>

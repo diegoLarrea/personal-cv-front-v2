@@ -27,7 +27,7 @@ export class PagesComponent implements OnInit {
         let obj = this.sideOptionsPublic.find(it => {
           return it.id == idActive;
         });
-        if(obj == null){
+        if (obj == null) {
           obj = this.sideOptionsAdmin.find(it => {
             return it.id == idActive;
           });
@@ -43,6 +43,7 @@ export class PagesComponent implements OnInit {
 
   hasCollapse = false;
   user: User = new User();
+  screenWidth = null;
   ngOnInit() {
     this.auth.obtenerUsuarioLogueado().subscribe(
       data => {
@@ -54,9 +55,24 @@ export class PagesComponent implements OnInit {
         this.permissionsService.loadPermissions(perms);
       }
     )
-  }
 
-  sideFunction() { this.hasCollapse = !$("body").hasClass("sidebar-collapse"); }
+    this.screenWidth = window.innerWidth || document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    window.onresize = () => {
+      this.screenWidth = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    }
+
+    // document.getElementById("sidebar-wrapper").addEventListener("click", (e) => {
+    //   var rect = e.target.getBoundingClientRect();
+    //   var minX = rect.left + e.target.clientLeft;
+    //   var minY = rect.top + e.target.clientTop;
+    //   if ((e.clientX < minX || e.clientX >= minX + e.target.clientWidth) ||
+    //     (e.clientY < minY || e.clientY >= minY + e.target.clientHeight)) {
+    //     e.target.close();
+    //   }
+    // });
+  }
 
   salir() {
     this.auth.logout();
@@ -67,25 +83,25 @@ export class PagesComponent implements OnInit {
       id: 1,
       title: "Empleos disponibles",
       route: "/portal/empleos-disponibles",
-      icon: "nav-icon fas fa-briefcase",
+      icon: "nav-icon fas fa-briefcase mr-2",
       active: false,
-      isTitle: false
+      hover: false
     },
     {
       id: 2,
       title: "Cargar CV",
       route: "/portal/cargar-cv",
-      icon: "nav-icon fas fa-pencil-alt",
+      icon: "nav-icon fas fa-pencil-alt mr-2",
       active: false,
-      isTitle: false
+      hover: false
     },
     {
       id: 3,
       title: "Postulaciones",
       route: "/portal/postulaciones",
-      icon: "nav-icon fas fa-star",
+      icon: "nav-icon fas fa-star mr-2",
       active: false,
-      isTitle: false
+      hover: false
     }
   ];
 
@@ -95,27 +111,51 @@ export class PagesComponent implements OnInit {
       id: 7,
       title: "Usuarios",
       route: "/portal/usuarios",
-      icon: "nav-icon fas fa-user-friends",
+      icon: "nav-icon fas fa-user-friends mr-2",
       active: false,
-      isTitle: false
+      hover: false
     },
     {
       permiso: "a_cambiar",
       id: 5,
       title: "Empleos",
       route: "/portal/empleos",
-      icon: "nav-icon fas fa-briefcase",
+      icon: "nav-icon fas fa-briefcase mr-2",
       active: false,
-      isTitle: false
+      hover: false
     },
     {
       permiso: "a_cambiar",
       id: 6,
       title: "Ajustes",
       route: "/portal/ajustes",
-      icon: "nav-icon fas fa-cog",
+      icon: "nav-icon fas fa-cog mr-2",
       active: false,
-      isTitle: false
+      hover: false
     }
   ]
+
+  toggleSideBar(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+    if(this.screenWidth < 768){
+      if(this.hasToggled()){
+        $(".overlay").addClass("active");
+      }else{
+        $(".overlay").removeClass("active");        
+      }
+    }
+  }
+
+  hasToggled(): boolean {
+    return $("#wrapper").hasClass("toggled");
+  }
+
+  toggleOnClick(e) {
+    if (this.screenWidth < 768) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+      $(".overlay").removeClass("active");
+    }
+  }
 }

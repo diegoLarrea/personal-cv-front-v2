@@ -4,15 +4,15 @@
         <hr />
     </div>
     <div *ngFor="let i of experiencias; index as j;" class="col-12">
-        <div class="card shadow-none border border-gris border-radius">
+        <div class="card shadow-none border border-gris border-radius my-1">
             <div (click)="collapseExp[j]=!collapseExp[j]" data-toggle="collapse" attr.href="#collapse-exp-{{j}}" class="card-header">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseExp[j]? 'down':'up'}}"></i></a>
                 <div class="row">
-                    <div *ngIf="i.id == null" class="col-12">
-                        <h5 class="card-title platform-regular text-rosado">Nuevo registro</h5>
+                    <div *ngIf="i.id == null" class="col-12 my-auto">
+                        <h5 class="card-title platform-regular text-rosado m-0">Nuevo registro</h5>
                     </div>
-                    <div *ngIf="i.id != null" class="col-12">
-                        <h5 class="card-title platform-regular">{{j+ 1}}- {{i.institucion}}</h5>
+                    <div *ngIf="i.id != null" class="col-12 my-auto">
+                        <h5 class="card-title platform-regular m-0">{{j+ 1}}- {{i.institucion}}</h5>
                     </div>
                 </div>
             </div>

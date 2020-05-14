@@ -1,21 +1,22 @@
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item" style="width: 25%;">
-        <a class="nav-link active text-rosado comfortaa text-center" href="#datos-personales" role="tab" data-toggle="tab">
+        <a class="nav-link active text-rosado platform-regular text-center" href="#datos-personales" role="tab"
+            data-toggle="tab">
             <i class="fas fa-user fa-lg mr-2"></i> <span class="d-none d-md-block">Datos Personales</span>
         </a>
     </li>
     <li class="nav-item" style="width: 25%;">
-        <a class="nav-link text-rosado comfortaa text-center" href="#educacion" role="tab" data-toggle="tab">
+        <a class="nav-link text-rosado platform-regular text-center" href="#educacion" role="tab" data-toggle="tab">
             <i class="fas fa-graduation-cap fa-lg mr-2"></i><span class="d-none d-md-block">Educación</span>
         </a>
     </li>
     <li class="nav-item" style="width: 25%;">
-        <a class="nav-link text-rosado comfortaa text-center" href="#experiencias" role="tab" data-toggle="tab">
+        <a class="nav-link text-rosado platform-regular text-center" href="#experiencias" role="tab" data-toggle="tab">
             <i class="fas fa-briefcase fa-lg mr-2"></i><span class="d-none d-md-block">Experiencias</span>
         </a>
     </li>
     <li class="nav-item" style="width: 25%;">
-        <a class="nav-link text-rosado comfortaa text-center" href="#referencias" role="tab" data-toggle="tab">
+        <a class="nav-link text-rosado platform-regular text-center" href="#referencias" role="tab" data-toggle="tab">
             <i class="fas fa-phone-alt fa-lg mr-2"></i><span class="d-none d-md-block">Referencias</span>
         </a>
     </li>
@@ -24,26 +25,32 @@
     <!-- /.col -->
     <div class="col-12">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-negro">
-                <h3 class="widget-user-username mt-2 text-white platform-light">{{persona.nombres + ' ' + persona.apellidos}}</h3>
-                <!-- <button class="btn btn-sm bg-rosado border-rosado text-white platform-light">Descar mi CV</button> -->
-            </div>
-            <div (click)="selectImage()" class="widget-user-image" style="cursor: pointer;">
-                <input (change)="handleFiles($event.target.files)" type="file" id="profile">
-                <img class="image img-circle elevation-2" src="{{img == null?'assets/images/home-2.png':img}}" alt="User Avatar">
-                <div class="middle">
-                    <i class="fas fa-pencil-alt text-white fa-lg"></i>
+        <div class="card">
+            <div class="card-header bg-negro">
+                <div class="row">
+                    <div class="col-12">
+                        <div (click)="selectImage()" style="cursor: pointer;" class="text-center">
+                            <input (change)="handleFiles($event.target.files)" type="file" id="profile">
+                            <img style="width:150px;height: auto;" class="rounded-circle elevation-2"
+                                src="{{img == null?'assets/images/home-2.png':img}}">
+                            <div class="middle">
+                                <i class="fas fa-pencil-alt text-white fa-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="mt-2 text-white platform-light text-center">{{persona.nombres + ' ' + persona.apellidos}}</h3>
+                        <div class="text-center">
+                            <button class="btn btn-sm bg-rosado text-white border-rosado platform-regular">Descargar CV</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-12">
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade" id="datos-personales">
-                                <app-datos-personales [datosPersonales]="persona" ></app-datos-personales>
+                                <app-datos-personales [datosPersonales]="persona"></app-datos-personales>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="educacion">
                                 <app-datos-educacion></app-datos-educacion>
