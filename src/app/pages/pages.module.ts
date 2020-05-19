@@ -7,7 +7,6 @@ import { PagesComponent } from './pages.component';
 import { CargarCvComponent } from './cargar-cv/cargar-cv.component';
 import { PostulacionesComponent } from './postulaciones/postulaciones.component';
 import { AjustesComponent } from './ajustes/ajustes.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +23,6 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     CargarCvComponent,
     PostulacionesComponent,
     AjustesComponent,
-    UsuariosComponent,
     DatosPersonalesComponent,
     DatosEducacionComponent,
     DatosExperienciasComponent,

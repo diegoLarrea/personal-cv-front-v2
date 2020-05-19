@@ -60,7 +60,7 @@ const routes: Routes = [
       },
       {
         path: "usuarios",
-        component: UsuariosComponent,
+        loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule),
         data: {
           id: 7
         },
