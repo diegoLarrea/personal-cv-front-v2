@@ -3,13 +3,15 @@
         <div class="col-12">
             <h2 class="platform-light text-black-50 mt-3">Postulaciones</h2>
         </div>
-        <div class="col-12">
+        <div class="col-12 d-none d-md-flex">
             <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th class="text-black-50 platform-regular" style="width: 60%;" scope="col">Empleo</th>
-                        <th class="text-black-50 platform-regular" style="width: 25%;" scope="col">Fecha Postulación</th>
-                        <th class="text-black-50 platform-regular text-center" style="width: 15%;" scope="col">Acciones</th>
+                        <th class="text-black-50 platform-regular" style="width: 25%;" scope="col">Fecha Postulación
+                        </th>
+                        <th class="text-black-50 platform-regular text-center" style="width: 15%;" scope="col">Acciones
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,21 +19,41 @@
                         <td>{{i.empleo != null? i.empleo.oportunidad: ''}}</td>
                         <td>{{i.fecha_postulacion}}</td>
                         <td class="text-center">
-                            <a (click)="eliminarModal.id=i.id;eliminarModal.pos=j;" data-toggle="modal" data-target="#eliminarPostulacion" href="#" title="Eliminar postulación" class="mr-2"><i class="fas fa-trash-alt text-rosado"></i></a>
-                            <a [routerLink]="['/portal/empleos-disponibles/detalles', i.empleo.id]" href="#" title="Ver empleo"><i class="fas fa-external-link-square-alt text-rosado"></i></a>
+                            <a (click)="eliminarModal.id=i.id;eliminarModal.pos=j;" data-toggle="modal"
+                                data-target="#eliminarPostulacion" href="#" title="Eliminar postulación" class="mr-2"><i
+                                    class="fas fa-trash-alt text-rosado"></i></a>
+                            <a [routerLink]="['/portal/empleos-disponibles/detalles', i.empleo.id]" href="#"
+                                title="Ver empleo"><i class="fas fa-external-link-square-alt text-rosado"></i></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div *ngIf="!loading && postulaciones.length == 0" class="text-center">
-                <h5  class="text-rosado platform-regular">No existen postulaciones</h5>
-                <a style="text-decoration: underline;" class="text-black-50 platform-regular" routerLink="/portal/empleos-disponibles">Ver empleos disponibles</a>
+                <h5 class="text-rosado platform-regular">No existen postulaciones</h5>
+                <a style="text-decoration: underline;" class="text-black-50 platform-regular"
+                    routerLink="/portal/empleos-disponibles">Ver empleos disponibles</a>
             </div>
+        </div>
+
+        <div class="col-12 d-md-none my-3">
+            <ul class="list-group">
+                <li *ngFor="let i of postulaciones; index as j;" class="list-group-item">
+                    <h5 class="platform-regular text-rosado">{{i.empleo? i.empleo.oportunidad: ""}}</h5>
+                    <p class="text-black-50 platform-light">Fecha postulación: {{i.fecha_postulacion}}</p>
+                    <p class="text-center m-0">
+                        <a (click)="eliminarModal.id=i.id;eliminarModal.pos=j;" data-toggle="modal"
+                            data-target="#eliminarPostulacion" href="#" title="Eliminar postulación" class="mr-2"><i
+                                class="fas fa-trash-alt text-rosado"></i></a>
+                        <a [routerLink]="['/portal/empleos-disponibles/detalles', i.empleo.id]" href="#"
+                            title="Ver empleo"><i class="fas fa-external-link-square-alt text-rosado"></i></a>
+                    </p>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 <div id="eliminarPostulacion" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Postulación</h5>
