@@ -122,3 +122,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.8;
   pointer-events: none;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

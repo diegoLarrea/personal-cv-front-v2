@@ -29,17 +29,19 @@
             <div class="card-header bg-negro">
                 <div class="row">
                     <div class="col-12">
-                        <div (click)="selectImage()" style="cursor: pointer;" class="text-center">
-                            <input (change)="handleFiles($event.target.files)" type="file" id="profile">
-                            <img style="width:150px;height: auto;" class="rounded-circle elevation-2"
-                                src="{{img == null?'assets/images/home-2.png':img}}">
-                            <div class="middle">
-                                <i class="fas fa-pencil-alt text-white fa-lg"></i>
-                            </div>
+                        <div class="text-center position-relative" id="foto-perfil-view">
+                            <input (change)="handleFiles($event)" type="file" id="profile">
+                            <span (click)="selectImage()" class="pencil cursor-pointer">
+                                <i class="fas fa-camera text-white fa-lg d-block"></i>
+                                <!-- <small class="text-white">Seleccionar</small> -->
+                            </span>
                         </div>
-                        <h3 class="mt-2 text-white platform-light text-center">{{persona.nombres + ' ' + persona.apellidos}}</h3>
+                        <h3 class="mt-2 text-white platform-light text-center">
+                            {{persona.nombres != null? persona.nombres: ""}}
+                            {{persona.apellidos != null? persona.apellidos:""}}</h3>
                         <div class="text-center">
-                            <button class="btn btn-sm bg-rosado text-white border-rosado platform-regular">Descargar CV</button>
+                            <button class="btn btn-sm bg-rosado text-white border-rosado platform-regular">Descargar
+                                CV</button>
                         </div>
                     </div>
                 </div>
@@ -71,3 +73,4 @@
     </div>
     <!-- /.col -->
 </div>
+<app-spinner [visible]="loading"></app-spinner>

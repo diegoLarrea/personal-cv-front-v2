@@ -9,18 +9,18 @@
                             <h4>Portal de Empleos</h4>
                         </div>
                         <div class="col-12 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="email">Correo Electrónico</label>
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-regular" for="email">Correo Electrónico</label>
                             <input [(ngModel)]="user" name="user" type="email" class="form-control" id="email">
                         </div>
                         <div class="col-12 form-group">
-                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-light" for="pass">Contraseña</label>
+                            <label style="letter-spacing: 1.1px;" class="text-black-50 platform-regular" for="pass">Contraseña</label>
                             <input [(ngModel)]="pass" name="pass" type="password" class="form-control" id="pass">
                         </div>
                         <div class="col-10 offset-1 col-md-8 offset-md-2">
                             <button (click)="login()" type="submit" class="btn btn-block bg-rosado border-rosado platform-regular text-white">Ingresar</button>
                         </div>
-                        <div class="col-12 text-center mt-4 text-black-50">
-                            ¿No tienes una cuenta? <a routerLink="/register" href="#"><span class="text-rosado platform-regular">Registrarse</span></a>
+                        <div class="col-12 text-center mt-4 text-black-50 platform-regular">
+                            ¿No tienes una cuenta? <a routerLink="/register" href="#"><span class="text-rosado">Registrarse</span></a>
                         </div>
                     </form>
                 </div>

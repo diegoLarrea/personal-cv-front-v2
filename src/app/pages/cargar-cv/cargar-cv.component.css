@@ -7,34 +7,20 @@
   display: none;
 }
 
-.image {
+.pencil:hover {
   opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: 0.5s ease;
-  backface-visibility: hidden;
 }
 
-.middle {
-  transition: 0.5s ease;
-  opacity: 0;
+.pencil {
   position: absolute;
-  top: 50%;
+  bottom: 10px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  opacity: 0.4;
 }
 
-.widget-user-image:hover .image {
-  opacity: 0.3;
-}
-
-.widget-user-image:hover .middle {
-  opacity: 1;
-}
-
-.border-3 {
-  border-width: 3px !important;
+#foto-perfil-view img {
+  width: 100px !important;
+  height: auto !important;
 }

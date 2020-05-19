@@ -34,7 +34,9 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/bootstrap-select/dist/js/bootstrap-select.js"
+              "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
+              "node_modules/cropperjs/dist/cropper.js",
+              "node_modules/blueimp-load-image/js/load-image.all.min.js"
             ]
           },
           "configurations": {
