@@ -15,9 +15,8 @@ export class UserService {
     httpParams = httpParams.append("cantidad", params.can.toString());
     httpParams = httpParams.append("orderBy", params.by.toString());
     httpParams = httpParams.append("orderDir", params.dir.toString());
-    if(params.filters != null){
-      httpParams = httpParams.append("search", params.filters);
-    }
+    httpParams = httpParams.append("search", JSON.stringify(params.filters));
+    
     return this.http.get(`api/admin/usuarios`, {params:httpParams});
   }
 

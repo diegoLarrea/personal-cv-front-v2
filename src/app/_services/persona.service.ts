@@ -16,4 +16,8 @@ export class PersonaService {
   putByUserId(id, body): Observable<any>{
     return this.http.put(`api/public/persona/${id}`, body);
   }
+
+  getAllData(): Observable<any>{
+    return this.http.get(`api/public/persona/all`);
+  }
 }

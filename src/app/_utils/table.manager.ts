@@ -64,4 +64,8 @@ export class TableMaganer {
     this.params.can = 10;
     this.params.filters = null;
   }
+
+  setFilters(filters){
+    this.params.filters = filters;
+  }
 }

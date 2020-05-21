@@ -19,3 +19,7 @@ td {
 .my-pagination /deep/ .ngx-pagination {
   padding: 0px !important;
 }
+
+label {
+  font-family: 'Platform-Regular';
+}

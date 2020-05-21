@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mt-3">
+            <a class="platform-light text-rosado" routerLink="/portal/cargar-cv"><i class="fas fa-arrow-left mr-2"></i> Volver a Cargar CV</a>
+        </div>
+        <div class="col-12">
+            <div class="card card-body my-3 shadow-sm">
+                <div class="row" id="foto-perfil-container">
+                    <div class="col-12 my-auto text-center" id="foto-perfil-view">
+                        <h5 class="mb-0 mx-2">{{persona.nombres + " " + persona.apellidos}}</h5>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h6>
+                            <span>Documento: </span> {{persona.documento}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h6>
+                            <span>F. Nac.: </span> {{persona.fecha_nacimiento}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h6>
+                            <span>E. Civil: </span> {{persona.estado_civil}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h6>
+                            <span>País: </span> {{persona.pais_nacimiento}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h6>
+                            <span>Ciudad: </span> {{persona.ciudad_residencia}}
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h5>Contacto</h5>
+                    </div>
+                    <div class="col-12 col-md-6 font-weight-bold">
+                        <h6>
+                            <span><i class="fas fa-at"></i> </span> {{persona.email}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 font-weight-bold">
+                        <h6>
+                            <span><i class="fas fa-mobile-alt"></i></span> {{persona.cel_1}}
+                        </h6>
+                    </div>
+                    <div class="col-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h5><span><i class="fas fa-graduation-cap mr-1"></i></span> Educación</h5>
+                    </div>
+                    <div *ngFor="let i of educacion" class="col-12 col-md-6">
+                        <div class="card card-body my-1">
+                            <h5 class="m-0"><span>{{i.titulo}}</span></h5>
+                            <p><span class="badge bg-rosado text-white">{{i.nivel}}</span></p>
+                            <h6>{{i.institucion + " (" + i.pais + ")"}}</h6>
+                            <h6>{{i.desde}} {{i.hasta? "- " + i.hasta: "- Actualidad"}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h5><span><i class="fas fa-language mr-1"></i></span> Idiomas</h5>
+                    </div>
+                    <div *ngFor="let i of idiomas" class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-body my-1">
+                            <h5><span>{{i.idioma}}</span></h5>
+                            <h6><span>Habla: </span> {{nivelesIdiomas[i.habla]}}</h6>
+                            <h6><span>Lee: </span> {{nivelesIdiomas[i.lee]}}</h6>
+                            <h6><span>Escribe: </span> {{nivelesIdiomas[i.escribe]}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h5><span><i class="fas fa-briefcase mr-1"></i></span> Experiencias</h5>
+                    </div>
+                    <div *ngFor="let i of experiencias" class="col-12 col-md-6">
+                        <div class="card card-body my-1">
+                            <h5 class="m-0"><span>{{i.institucion}}</span></h5>
+                            <p class="m-0"><span class="badge bg-rosado text-white">{{i.rubro}}</span></p>
+                            <h6>{{i.desde}} {{i.hasta? "- " + i.hasta: "- Actualidad"}}</h6>
+                            <h6><span>Tareas: </span> {{i.tareas}}</h6>
+                            <h6><span>Superior Inmediato</span></h6>
+                            <h6><span>Nombre: </span> {{i.superior_nombre}}</h6>
+                            <h6><span>Puesto: </span> {{i.superior_puesto}}</h6>
+                            <h6><span>Contacto: </span> {{i.superior_contacto}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h5><span><i class="fas fa-phone-volume mr-1"></i></span> Referencias</h5>
+                    </div>
+                    <div *ngFor="let i of referencias" class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-body my-1">
+                            <h5>{{i.nombre}} (<span>{{i.contacto}}</span>)</h5>
+                            <h6><span>Parentesco: </span> {{i.parentesco}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

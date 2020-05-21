@@ -6,6 +6,7 @@ import { PostulacionesComponent } from './postulaciones/postulaciones.component'
 import { AjustesComponent } from './ajustes/ajustes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AuthGuardService } from '../_services/guard';
+import { ResumenComponent } from './cargar-cv/resumen/resumen.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,14 @@ const routes: Routes = [
       {
         path: "cargar-cv",
         component: CargarCvComponent,
+        data: {
+          id: 2
+        },
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "cargar-cv/resumen",
+        component: ResumenComponent,
         data: {
           id: 2
         },

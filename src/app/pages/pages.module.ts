@@ -15,6 +15,7 @@ import { DatosEducacionComponent } from './cargar-cv/datos-educacion/datos-educa
 import { DatosExperienciasComponent } from './cargar-cv/datos-experiencias/datos-experiencias.component';
 import { DatosReferenciasComponent } from './cargar-cv/datos-referencias/datos-referencias.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { ResumenComponent } from './cargar-cv/resumen/resumen.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     DatosExperienciasComponent,
     DatosReferenciasComponent,
     SpinnerComponent,
+    ResumenComponent,
   ], imports: [
     CommonModule,
     ParticlesModule,

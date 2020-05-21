@@ -1,0 +1,22 @@
+#foto-perfil-container {
+    min-height: 80px;
+}
+
+hr {
+    border: 1px solid #d9186b;
+}
+
+h6, h5 {
+    font-family: "Platform-Regular";
+    color: rgba(0,0,0,.5);
+}
+
+h6 span, h5 span {
+    color: #d9186b;
+}
+
+a:hover {
+    color: #d9186b;
+    opacity: 0.8;
+    text-decoration: none;
+}

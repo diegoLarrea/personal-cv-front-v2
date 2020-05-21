@@ -3,31 +3,20 @@
         <div class="col-12">
             <h2 class="platform-light text-black-50 mt-3">Usuarios</h2>
         </div>
-        <div class="col-12">
-            <h5 class="platform-light text-rosado">Filtros</h5>
-        </div>
-        <div class="col-12 col-sm-6 col-md-8 col-lg-9">
-            <div class="input-group mb-3">
-                <input [(ngModel)]="tableManager.params.filters" type="text" class="form-control"
-                    placeholder="Nombre, Documento, F. Nac., Email" aria-describedby="buscar">
+        <div class="col-12 my-2">
+            <button data-toggle="modal" data-target="#modalFiltros"
+                class="btn btn-sm bg-rosado text-white platform-regular mr-2"><i
+                    class="fas fa-search mr-2"></i>Filtros</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm bg-rosado text-white platform-regular dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-file-export mr-2"></i>Exportar
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Todos los cvs</a>
+                    <a class="dropdown-item" href="#">Cvs de hoy</a>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="input-group mb-3">
-                <select [(ngModel)]="tableManager.params.can" class="custom-select">
-                    <option value="10">10 items por pág.</option>
-                    <option value="20">20 items por pág.</option>
-                    <option value="30">30 items por pág.</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-12">
-            <button (click)="getUsuarios(1)" class="btn btn-sm bg-rosado border-rosado text-white float-right mb-3" type="submit" id="buscar">
-                <i class="fas fa-search mr-2"></i>Aplicar filtros
-            </button>
-            <button (click)="limpiarFiltros()" class="btn btn-sm btn-outline-negro mr-2 float-right" type="submit" id="buscar">
-                Limpiar filtros
-            </button>
         </div>
         <div class="col-12">
             <!-- Table screen >= 768px -->
@@ -61,8 +50,17 @@
                             <td>{{i.email}}</td>
                             <td>
                                 <div class="text-center">
-                                    <a style="cursor: pointer;" title="Ver detalles">
-                                        <i class="fas fa-info-circle fa-lg text-gris"></i>
+                                    <a style="cursor: pointer;" title="Editar usuario">
+                                        <i class="fas fa-pencil-alt fa-lg text-rosado mr-1"></i>
+                                    </a>
+                                    <a style="cursor: pointer;" title="Ver CV">
+                                        <i class="fas fa-portrait fa-lg text-rosado mr-1"></i>
+                                    </a>
+                                    <a style="cursor: pointer;" title="Agendar">
+                                        <i class="fas fa-user-clock fa-lg text-rosado mr-1"></i>
+                                    </a>
+                                    <a style="cursor: pointer;" title="Postulaciones">
+                                        <i class="fas fa-user-check fa-lg text-rosado"></i>
                                     </a>
                                 </div>
                             </td>
@@ -129,5 +127,94 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="modalFiltros" tabindex="-1" role="dialog" aria-labelledby="modalFiltrosLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title platform-regular text-black-50" id="modalFiltrosLabel">Filtros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">Nro. Documento</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="filters.documento" type="text" class="form-control"
+                                placeholder="Nombres" aria-describedby="documento">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">Nombres</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="filters.nombres" type="text" class="form-control"
+                                placeholder="Nombres" aria-describedby="nombres">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">Apellidos</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="filters.apellidos" type="text" class="form-control"
+                                placeholder="Apellidos" aria-describedby="apellidos">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">F. Nacimiento</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="filters.fecha_nacimiento" type="date" class="form-control"
+                                placeholder="Fecha Nac." aria-describedby="fecha_nacimiento">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">País</label>
+                        <div class="input-group mb-3">
+                            <select [(ngModel)]="filters.pais"  name="pais" class="custom-select" id="pais">
+                                <option selected disabled>Elegir</option>
+                                <option *ngFor="let i of paises" [value]="i">{{i}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">Ciudad</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="filters.ciudad" type="text" class="form-control"
+                                placeholder="Ciudad" aria-describedby="Ciudad">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">Email</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="filters.email" type="text" class="form-control"
+                                placeholder="Email" aria-describedby="Email">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="text-rosado">Items por página</label>
+                        <div class="input-group mb-3">
+                            <select [(ngModel)]="tableManager.params.can" class="custom-select">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" (click)="getUsuarios(1)"
+                    class="btn btn-sm bg-rosado border-rosado text-white float-right" type="submit" id="buscar">
+                    <i class="fas fa-search mr-2"></i>Aplicar filtros
+                </button>
+                <button data-dismiss="modal" (click)="limpiarFiltros()"
+                    class="btn btn-sm btn-outline-negro mr-2 float-right" type="submit" id="buscar">
+                    Limpiar filtros
+                </button>
+            </div>
+        </div>
     </div>
 </div>

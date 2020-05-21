@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TableMaganer } from 'src/app/_utils/table.manager';
 import { UserService } from 'src/app/_services/user.service';
 import { Persona } from 'src/app/_models/persona';
+import { Paises } from 'src/app/_utils/paises';
 
 @Component({
   selector: 'app-usuarios',
@@ -15,6 +16,16 @@ export class UsuariosComponent implements OnInit {
   personas: Persona[] = [];
   p: number = 1;
   total: number = null;
+  paises = [];
+  filters = {
+    nombres: null,
+    apellidos: null,
+    fecha_nacimiento: null,
+    pais: null,
+    documento: null,
+    ciudad: null,
+    email: null
+  }
   constructor(private apiUser: UserService) {
     let headers = [
       { columnName: "Documento", by: "documento" },
@@ -24,6 +35,7 @@ export class UsuariosComponent implements OnInit {
       { columnName: "Acciones", by: null }
     ];
     this.tableManager.init(headers, 1);
+    this.paises = Paises.paises;
   }
 
   ngOnInit(): void {
@@ -32,6 +44,7 @@ export class UsuariosComponent implements OnInit {
 
   getUsuarios(page){
     this.loading = true;
+    this.tableManager.setFilters(this.filters);
     this.tableManager.params.page = page;
       this.apiUser.get(this.tableManager.params).subscribe(
         data => {
@@ -44,7 +57,17 @@ export class UsuariosComponent implements OnInit {
   }
 
   limpiarFiltros(){
+    this.filters.nombres = null;
+    this.filters.apellidos = null;
+    this.filters.documento = null;
+    this.filters.ciudad = null;
+    this.filters.pais = null;
+    this.filters.email = null;
+    this.filters.fecha_nacimiento = null;
+
     this.tableManager.reset(1);
+    this.tableManager.setFilters(this.filters);
+
     this.getUsuarios(1);
   }
 }
