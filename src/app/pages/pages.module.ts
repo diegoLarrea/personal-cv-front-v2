@@ -16,6 +16,11 @@ import { DatosExperienciasComponent } from './cargar-cv/datos-experiencias/datos
 import { DatosReferenciasComponent } from './cargar-cv/datos-referencias/datos-referencias.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ResumenComponent } from './cargar-cv/resumen/resumen.component';
+import { AreasComponent } from './ajustes/areas/areas.component';
+import { LocalidadesComponent } from './ajustes/localidades/localidades.component';
+import { NivelesComponent } from './ajustes/niveles/niveles.component';
+import { DominiosComponent } from './ajustes/dominios/dominios.component';
+import { TagsComponent } from './ajustes/tags/tags.component';
 
 
 @NgModule({
@@ -30,6 +35,11 @@ import { ResumenComponent } from './cargar-cv/resumen/resumen.component';
     DatosReferenciasComponent,
     SpinnerComponent,
     ResumenComponent,
+    AreasComponent,
+    LocalidadesComponent,
+    NivelesComponent,
+    DominiosComponent,
+    TagsComponent,
   ], imports: [
     CommonModule,
     ParticlesModule,

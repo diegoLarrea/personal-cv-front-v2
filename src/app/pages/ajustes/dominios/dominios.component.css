@@ -1,0 +1,25 @@
+th, label {
+    font-family: 'Platform-Regular';
+    color: #d9186b;
+}
+
+td {
+    font-family: 'Platform-Light';
+    font-size: 14px;
+}
+
+a {
+    cursor: pointer;
+}
+
+a i {
+    color: #d9186b;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #d9186b;
+}
+
+.modal-title {
+    color: rgba(0, 0, 0, .5)
+}

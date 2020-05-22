@@ -28,7 +28,8 @@
               "src/styles.css",
               "node_modules/animate.css/animate.css",
               "node_modules/bootstrap-select/dist/css/bootstrap-select.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -36,7 +37,8 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
               "node_modules/cropperjs/dist/cropper.js",
-              "node_modules/blueimp-load-image/js/load-image.all.min.js"
+              "node_modules/blueimp-load-image/js/load-image.all.min.js",
+              "node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"
             ]
           },
           "configurations": {

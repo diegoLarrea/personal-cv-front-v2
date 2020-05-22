@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="row h-100">
+        <div class="col-12 col-sm-6">
+            <h2 class="platform-light text-black-50 mt-3">Áreas</h2>
+        </div>
+        <div class="col-12 col-sm-6 my-auto text-right">
+            <button class="btn btn-sm bg-rosado text-white platform-regular" data-toggle="modal"
+                data-target="#agregarArea">
+                <i class="fas fa-plus mr-2"></i>
+                Agregar área
+            </button>
+        </div>
+        <div class="col-12 my-2">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;" class="text-center" scope="col">#</th>
+                        <th style="width: 60%;" scope="col">Nombre</th>
+                        <th style="width: 20%;" class="text-center" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let i of areas | paginate: {id:'areas-paginator', itemsPerPage: itemspp, currentPage: p }; index as j;">
+                        <td class="text-center">{{ ((p-1)*itemspp) + (j+1)}}.</td>
+                        <td>{{i.nombre}}</td>
+                        <td class="text-center">
+                            <a (click)="areaEdit=i;" data-toggle="modal" data-target="#editarArea" title="Editar"><i class="fas fa-pencil-alt fa-lg mr-2"></i></a>
+                            <a (click)="areaDelete=i;areaDeletePos=j;" data-toggle="modal" data-target="#eliminarArea"  title="Eliminar"><i class="fas fa-trash-alt fa-lg"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 text-center">
+            <pagination-controls class="my-pagination" id="areas-paginator" (pageChange)="p = $event" previousLabel=""
+                nextLabel="" screenReaderPaginationLabel="Pagination">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="agregarAreaLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarAreaLabel">Agregar área</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">Nombre del área</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="areaAdd.nombre" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button (click)="postArea()" type="button" class="btn bg-rosado text-white" data-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarArea" tabindex="-1" role="dialog" aria-labelledby="editarAreaLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarAreaLabel">Editar área</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">Nombre del área</label>
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="areaEdit.nombre" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button (click)="putArea()" type="button" class="btn bg-rosado text-white" data-dismiss="modal">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="eliminarArea" tabindex="-1" role="dialog" aria-labelledby="eliminarAreaLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eliminarAreaLabel">Eliminar área</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="platform-regular text-black-50 m-0">Área: {{areaDelete.nombre}} <br>
+                    ¿Desea eliminar el dato?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button (click)="deleteArea()" type="button" class="btn bg-rosado text-white" data-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
