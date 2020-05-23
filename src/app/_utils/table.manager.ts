@@ -10,7 +10,7 @@ export class TableMaganer {
   public currentHeader: any = 0;
 
 
-  public init(array: any, sortByInitial) {
+  public init(array: any, sortByInitial, direction) {
     /*
       params: 
       - array: lista de cabeceras de la tabla
@@ -25,7 +25,7 @@ export class TableMaganer {
         sortable: array[i].by != null
       });
     }
-    this.reset(sortByInitial);
+    this.reset(sortByInitial, direction);
   }
 
   sortBy(pos) {
@@ -50,13 +50,13 @@ export class TableMaganer {
     return true;
   }
 
-  reset(current){
+  reset(current, direction){
     this.headers[this.currentHeader].sort = false;
     this.headers[this.currentHeader].dir = "";
 
     this.currentHeader = current;
     this.headers[this.currentHeader].sort = true;
-    this.headers[this.currentHeader].dir = "ASC";
+    this.headers[this.currentHeader].dir = direction;
 
     this.params.dir = this.headers[this.currentHeader].dir;
     this.params.by = this.headers[this.currentHeader].by;

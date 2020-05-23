@@ -1,1 +1,256 @@
-<p>listar-empleo works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="platform-light text-black-50 mt-3">Empleos</h2>
+        </div>
+        <div class="col-12 my-2">
+            <button data-toggle="modal" data-target="#modalFiltros"
+                class="btn btn-sm bg-rosado text-white platform-regular mr-2">
+                <i class="fas fa-search mr-2"></i>Filtros</button>
+            <button class="btn btn-sm bg-rosado text-white platform-regular mr-2">
+                <i class="fas fa-plus mr-2"></i>Agregar Empleo</button>
+            <button data-toggle="modal" data-target="#modalFiltros"
+                class="btn btn-sm bg-rosado text-white platform-regular mr-2">
+                <i class="fas fa-file-export mr-2"></i>Exportar</button>
+        </div>
+        <div class="col-12">
+            <!-- Table screen >= 768px -->
+            <div class="d-none d-md-block bg-white">
+                <table [class.loading]="loading" class="table table-bordered table-striped" id="dataTable" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let i of tableManager.headers; index as j"
+                                (click)="tableManager.sortBy(j);getEmpleos(p)">
+                                <span class="platform-light text-rosado">{{i.columnName}}</span>
+                                <span class="text-gris-claro">
+                                    <i *ngIf="i.sortable" [class.text-rosado]="i.sort && i.dir=='ASC'"
+                                        class="fas fa-long-arrow-alt-up ml-1"></i>
+                                    <i *ngIf="i.sortable" [class.text-rosado]="i.sort && i.dir=='DESC'"
+                                        class="fas fa-long-arrow-alt-down"></i>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let i of empleos | paginate: { id: 'server', itemsPerPage: tableManager.params.can, currentPage: p, totalItems:total }; index as j;">
+                            <td class="text-center">{{ (p-1) * tableManager.params.can + (j+1)}}.</td>
+                            <td>
+                                {{i.codigo}}
+                            </td>
+                            <td>
+                                {{i.oportunidad}}
+                            </td>
+                            <td>{{i.fecha_creacion}}</td>
+                            <td>{{i.usuario_creacion.email}}</td>
+                            <td>
+                                <div class="text-center">
+                                    <a (click)="empleoDetalle=i;" data-toggle="modal" data-target="#modalDetalles"
+                                        style="cursor: pointer;" title="Ver detalles">
+                                        <i class="fas fa-info-circle fa-lg text-rosado mr-1"></i>
+                                    </a>
+                                    <a style="cursor: pointer;" title="Editar">
+                                        <i class="fas fa-pencil-alt fa-lg text-rosado mr-1"></i>
+                                    </a>
+                                    <a style="cursor: pointer;" title="Eliminar">
+                                        <i class="fas fa-trash-alt fa-lg text-rosado mr-1"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Mobile table screen < 768px -->
+            <!-- <ul [class.loading]="loading" class="list-group list-group-flush d-md-none">
+                <li [class.loading]="loading"
+                    *ngFor="let i of facturas | paginate: { id: 'server', itemsPerPage: 10, currentPage: p, totalItems:total }"
+                    class="list-group-item">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                <span class="text-azul montserrat-bold">Nro: </span>
+                                <span class="montserrat-bold mobile-data-table">{{i.numeroFactura}}</span>
+                            </p>
+                            <p>
+                                <span class="text-azul montserrat-bold">Fecha: </span>
+                                <span class="montserrat-bold mobile-data-table">{{i.fechaFactura}}</span>
+                            </p>
+                            <p>
+                                <span class="text-azul montserrat-bold">Importe Total: </span>
+                                <span class="montserrat-bold mobile-data-table">{{i.importeTotal}}</span>
+                            </p>
+                            <p>
+                                <span class="text-azul montserrat-bold">IVA 10%: </span>
+                                <span class="montserrat-bold mobile-data-table">{{i.iva10}}</span>
+                            </p>
+                            <p>
+                                <span class="text-azul montserrat-bold">IVA 5%: </span>
+                                <span class="montserrat-bold mobile-data-table">{{i.iva5}}</span>
+                            </p>
+                            <p class="text-center m-0">
+                                <span class="text-azul montserrat-bold">
+                                    <a class="animated fadeInLeft" style="cursor: pointer;" title="Ver detalles"
+                                        (click)="setDataModalDetalles(i)" data-toggle="modal"
+                                        data-target="#modalDetalles"><i
+                                            class="fas fa-info-circle fa-lg text-gris"></i></a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div *ngIf="screenWidth < 768" class="mb-1" style="height: 1rem;">
+                <div class="text-center">
+                    <div *ngIf="loading && screenWidth < 768" class="spinner-border spinner-border-sm text-success"
+                        role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="col-12">
+            <div class="text-center">
+                <pagination-controls id="server" class="my-pagination" (pageChange)="getEmpleos($event)"
+                    previousLabel="" nextLabel="">
+                </pagination-controls>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="modalFiltros" tabindex="-1" role="dialog" aria-labelledby="modalFiltrosLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title platform-regular text-black-50" id="modalFiltrosLabel">Filtros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="platform-light text-rosado">Filtros</h5>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="input-group mb-3">
+                            <input id="buscar" [(ngModel)]="filters.search" name="buscar" type="text"
+                                class="form-control" placeholder="Nombre del empleo, Código">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <select [(ngModel)]="tableManager.params.can" name="itemspp" class="selectpicker mb-3"
+                            data-width="100%" data-style="bg-white border border-gris">
+                            <option title="10 items por pág." [value]="10">10</option>
+                            <option title="20 items por pág." [value]="20">20</option>
+                            <option title="30 items por pág." [value]="30">30</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <select [(ngModel)]="filters.areas" name="areas" id="areas" data-selected-text-format="count"
+                            multiple data-live-search="true" class="selectpicker mb-3" data-width="100%" title="Áreas"
+                            data-style="bg-white border border-gris" data-size="5">
+                            <option *ngFor="let i of areas" title="{{i.nombre}}" [value]="i">{{i.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <select [(ngModel)]="filters.localidades" id="localidades" data-selected-text-format="count"
+                            multiple data-live-search="true" class="selectpicker mb-3" data-width="100%"
+                            title="Localidades" data-style="bg-white border border-gris" data-size="5">
+                            <option *ngFor="let i of localidades" attr.data-subtext="{{i.direccion}}"
+                                title="{{i.nombre}}" [value]="i">{{i.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" (click)="getEmpleos(1)"
+                    class="btn btn-sm bg-rosado border-rosado text-white float-right" type="submit" id="buscar">
+                    <i class="fas fa-search mr-2"></i>Aplicar filtros
+                </button>
+                <button data-dismiss="modal" (click)="limpiarFiltros()"
+                    class="btn btn-sm btn-outline-negro mr-2 float-right" type="submit" id="buscar">
+                    Limpiar filtros
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDetalles" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="modalDetallesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title platform-regular" id="modalDetallesLabel">{{empleoDetalle.oportunidad}} (<span
+                        style="color:#d9186b">{{empleoDetalle.codigo}}</span>) - Vigente hasta:
+                    {{empleoDetalle.vigencia}}</h5>
+                <button (click)="pm=1;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h6><span>Área:</span> {{empleoDetalle.area != null? empleoDetalle.area.nombre:""}}</h6>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6><span>Localidad:</span>
+                            {{empleoDetalle.localidad != null? empleoDetalle.localidad.nombre + ", " + empleoDetalle.localidad.direccion:""}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6><span>Nivel:</span> {{empleoDetalle.nivel != null? empleoDetalle.nivel.nombre:""}}</h6>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6><span>Dominio:</span> {{empleoDetalle.dominio != null? empleoDetalle.dominio.nombre:""}}
+                        </h6>
+                    </div>
+                    <div class="col-12">
+                        <h6><span>Descripción:</span> {{empleoDetalle.descripcion}}</h6>
+                    </div>
+                    <div class="col-12">
+                        <h6><span>Requisitos:</span> {{empleoDetalle.requisitos}}</h6>
+                    </div>
+                    <div class="col-12">
+                        <h6 class="mt-2"><span>Postulantes</span></h6>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 15%;" scope="col">#</th>
+                                    <th style="width: 55%;" scope="col">Nombre</th>
+                                    <th class="text-center" style="width: 30%;" scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let i of empleoDetalle.postulantes | paginate: { id: 'postulantes-paginator', itemsPerPage: 10, currentPage: pm}; index as j;">
+                                    <td class="text-center">{{(pm-1)*10 + (j+1)}}.</td>
+                                    <td>{{i.user.first_name + " " + i.user.last_name}}</td>
+                                    <td class="text-center">{{i.user.email}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 text-center">
+                        <pagination-controls id="postulantes-paginator" class="my-pagination" (pageChange)="pm=$event"
+                            previousLabel="" nextLabel="">
+                        </pagination-controls>
+                    </div>
+                    <div *ngIf="empleoDetalle.postulantes && empleoDetalle.postulantes.length == 0" class="col-12 text-center">
+                        <p class="text-rosado platform-regular">No existen postulantes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="pm=1;" type="button" class="btn bg-rosado text-white" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

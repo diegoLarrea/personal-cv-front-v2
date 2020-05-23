@@ -1,0 +1,36 @@
+.loading {
+  background-color: rgba(0, 0, 0, 0.025) !important;
+  pointer-events: none;
+}
+
+th {
+  cursor: pointer;
+  font-family: "Platform-Regular";
+  color: #d9186b;
+}
+
+td {
+  font-size: 14px;
+  font-family: "Platform-Light";
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #d9186b;
+}
+
+.my-pagination /deep/ .ngx-pagination {
+  padding: 0px !important;
+}
+
+label {
+  font-family: "Platform-Regular";
+}
+
+th:first-child, th:last-child {
+  text-align: center;
+}
+
+.modal-body h6 span {
+  color: #d9186b;
+  font-family: "Platform-Regular";
+}

@@ -34,7 +34,7 @@ export class UsuariosComponent implements OnInit {
       { columnName: "Email", by: "email" },
       { columnName: "Acciones", by: null }
     ];
-    this.tableManager.init(headers, 1);
+    this.tableManager.init(headers, 1, "ASC");
     this.paises = Paises.paises;
   }
 
@@ -65,7 +65,7 @@ export class UsuariosComponent implements OnInit {
     this.filters.email = null;
     this.filters.fecha_nacimiento = null;
 
-    this.tableManager.reset(1);
+    this.tableManager.reset(1, "ASC");
     this.tableManager.setFilters(this.filters);
 
     this.getUsuarios(1);

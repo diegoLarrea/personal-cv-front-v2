@@ -49,7 +49,18 @@ export class OfertaLaboralService {
         return this.http.get(`api/public/empleos/obtener-filtros`);
     }
 
-    getEmpleoById(id): Observable<any>{
+    getEmpleoById(id): Observable<any> {
         return this.http.get(`api/public/empleos/${id}`);
+    }
+
+    getEmpleos(params): Observable<any> {
+        let httpParams = new HttpParams();
+        httpParams = httpParams.append("page", params.page.toString());
+        httpParams = httpParams.append("cantidad", params.can.toString());
+        httpParams = httpParams.append("orderBy", params.by.toString());
+        httpParams = httpParams.append("orderDir", params.dir.toString());
+        httpParams = httpParams.append("filters", JSON.stringify(params.filters));
+
+        return this.http.get(`api/admin/empleo`, {params: httpParams});
     }
 }

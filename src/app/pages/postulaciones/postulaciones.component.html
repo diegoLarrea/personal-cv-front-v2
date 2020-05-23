@@ -28,13 +28,14 @@
                     </tr>
                 </tbody>
             </table>
-            <div *ngIf="!loading && postulaciones.length == 0" class="text-center">
+        </div>
+        <div class="col-12 d-none d-md-flex">
+            <div *ngIf="!loading && postulaciones.length == 0" class="text-center w-100">
                 <h5 class="text-rosado platform-regular">No existen postulaciones</h5>
                 <a style="text-decoration: underline;" class="text-black-50 platform-regular"
                     routerLink="/portal/empleos-disponibles">Ver empleos disponibles</a>
             </div>
         </div>
-
         <div class="col-12 d-md-none my-3">
             <ul class="list-group">
                 <li *ngFor="let i of postulaciones; index as j;" class="list-group-item">

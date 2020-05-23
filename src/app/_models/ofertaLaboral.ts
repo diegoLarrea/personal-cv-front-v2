@@ -18,4 +18,6 @@ export class OfertaLaboral {
     dominio: ConfigBase = null;
     usuario_creacion: User = null;
     usuario_modificacion: User = null;
+    codigo: string = null;
+    postulantes: any = null;
 }
