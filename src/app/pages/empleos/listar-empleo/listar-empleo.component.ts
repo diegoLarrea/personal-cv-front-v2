@@ -20,7 +20,7 @@ export class ListarEmpleoComponent implements OnInit {
       { columnName: "Creado por", by: null},
       { columnName: "Acciones", by: null }
     ];
-    this.tableManager.init(headers, 2, "DESC");
+    this.tableManager.init(headers, 3, "DESC");
   }
 
   tableManager = new TableMaganer();

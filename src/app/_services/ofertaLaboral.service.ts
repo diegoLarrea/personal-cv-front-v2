@@ -63,4 +63,8 @@ export class OfertaLaboralService {
 
         return this.http.get(`api/admin/empleo`, {params: httpParams});
     }
+
+    postEmpleo(body): Observable<any> {
+        return this.http.post(`api/admin/empleo`, body);
+    }
 }

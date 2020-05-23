@@ -62,10 +62,9 @@
                     <span class="badge bg-dark text-white mx-1">{{i.area.nombre}}</span>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">
-                        {{i.descripcion}}
-                    </p>
-                    <h6 class="text-rosado platform-regular">CÓDIGO: {{i.codigo}}</h6>
+                    <h6 class="text-rosado platform-regular">DESCRIPCIÓN</h6>
+                    <div [innerHTML]="i.descripcion"></div>
+                    <h6> <span class="text-rosado platform-regular">CÓDIGO: </span><b class="text-negro">{{i.codigo}}</b></h6>
                 </div>
                 <div class="card-footer text-muted d-md-none text-center bg-white">
                     <button [routerLink]="['/portal/empleos-disponibles/detalles', i.id]"
