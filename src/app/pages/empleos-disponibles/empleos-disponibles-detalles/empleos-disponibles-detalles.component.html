@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="platform-light text-black-50 mt-3">{{empleo.oportunidad}}</h2>
+            <h2 class="platform-light text-black-50 mt-3">{{empleo.oportunidad}} (<span style="color: #d9186b">{{empleo.codigo}}</span>)</h2>
         </div>
         <div class="col-12 col-md-6">
             <h5 class="platform-light text-rosado mb-3">Fecha de publicación: <span
@@ -20,13 +20,13 @@
             <h5 class="platform-light text-rosado mb-3">Descripción</h5>
         </div>
         <div class="col-12">
-            <h6 class="platform-light text-black-50 mb-3">{{empleo.descripcion}}</h6>
+            <h6 [innerHTML]="empleo.descripcion" class="platform-light text-black-50 mb-3"></h6>
         </div>
         <div class="col-12">
             <h5 class="platform-light text-rosado mb-3">Requisitos</h5>
         </div>
         <div class="col-12">
-            <h6 class="platform-light text-black-50 mb-3">{{empleo.requisitos}}</h6>
+            <h6 [innerHTML]="empleo.requisitos" class="platform-light text-black-50 mb-3"></h6>
         </div>
         <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
             <button [class.disable-btn]="disabledBtn" data-toggle="modal" data-target="#modalPostulacion"
