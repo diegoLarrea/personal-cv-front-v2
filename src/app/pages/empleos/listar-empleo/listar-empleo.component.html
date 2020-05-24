@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="platform-light text-black-50 mt-3">Empleos</h2>
+            <h4 class="platform-light text-black-50 mt-3">Empleos</h4>
         </div>
         <div class="col-12 my-2">
             <button data-toggle="modal" data-target="#modalFiltros"
@@ -9,9 +9,9 @@
                 <i class="fas fa-search mr-2"></i>Filtros</button>
             <button routerLink="/portal/empleos/agregar" class="btn btn-sm bg-rosado text-white platform-regular mr-2">
                 <i class="fas fa-plus mr-2"></i>Agregar Empleo</button>
-            <button data-toggle="modal" data-target="#modalFiltros"
+            <!-- <button data-toggle="modal" data-target="#modalFiltros"
                 class="btn btn-sm bg-rosado text-white platform-regular mr-2">
-                <i class="fas fa-file-export mr-2"></i>Exportar</button>
+                <i class="fas fa-file-export mr-2"></i>Exportar</button> -->
         </div>
         <div class="col-12">
             <!-- Table screen >= 768px -->
@@ -48,13 +48,19 @@
                                 <div class="text-center">
                                     <a (click)="empleoDetalle=i;" data-toggle="modal" data-target="#modalDetalles"
                                         style="cursor: pointer;" title="Ver detalles">
-                                        <i class="fas fa-info-circle fa-lg text-rosado mr-1"></i>
+                                        <i class="fas fa-info-circle fa-lg text-azul mr-1"></i>
                                     </a>
-                                    <a [routerLink]="['/portal/empleos/editar', i.id]" style="cursor: pointer;" title="Editar">
-                                        <i class="fas fa-pencil-alt fa-lg text-rosado mr-1"></i>
+                                    <a [routerLink]="['/portal/empleos/editar', i.id]" style="cursor: pointer;"
+                                        title="Editar">
+                                        <i class="fas fa-pencil-alt fa-lg text-amarillo mr-1"></i>
                                     </a>
-                                    <a style="cursor: pointer;" title="Eliminar">
-                                        <i class="fas fa-trash-alt fa-lg text-rosado mr-1"></i>
+                                    <a (click)="empleoDesactivar=i;" data-toggle="modal" data-target="#desactivarOferta"
+                                        *ngIf="i.activo" style="cursor: pointer;" title="Desactivar oferta">
+                                        <i class="fas fa-times fa-lg text-danger mr-1"></i>
+                                    </a>
+                                    <a (click)="empleoActivar=i;" data-toggle="modal" data-target="#activarOferta"
+                                        *ngIf="!i.activo" style="cursor: pointer;" title="Activar oferta">
+                                        <i class="fas fa-check fa-lg text-success mr-1"></i>
                                     </a>
                                 </div>
                             </td>
@@ -62,53 +68,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Mobile table screen < 768px -->
-            <!-- <ul [class.loading]="loading" class="list-group list-group-flush d-md-none">
-                <li [class.loading]="loading"
-                    *ngFor="let i of facturas | paginate: { id: 'server', itemsPerPage: 10, currentPage: p, totalItems:total }"
-                    class="list-group-item">
-                    <div class="row">
-                        <div class="col-12">
-                            <p>
-                                <span class="text-azul montserrat-bold">Nro: </span>
-                                <span class="montserrat-bold mobile-data-table">{{i.numeroFactura}}</span>
-                            </p>
-                            <p>
-                                <span class="text-azul montserrat-bold">Fecha: </span>
-                                <span class="montserrat-bold mobile-data-table">{{i.fechaFactura}}</span>
-                            </p>
-                            <p>
-                                <span class="text-azul montserrat-bold">Importe Total: </span>
-                                <span class="montserrat-bold mobile-data-table">{{i.importeTotal}}</span>
-                            </p>
-                            <p>
-                                <span class="text-azul montserrat-bold">IVA 10%: </span>
-                                <span class="montserrat-bold mobile-data-table">{{i.iva10}}</span>
-                            </p>
-                            <p>
-                                <span class="text-azul montserrat-bold">IVA 5%: </span>
-                                <span class="montserrat-bold mobile-data-table">{{i.iva5}}</span>
-                            </p>
-                            <p class="text-center m-0">
-                                <span class="text-azul montserrat-bold">
-                                    <a class="animated fadeInLeft" style="cursor: pointer;" title="Ver detalles"
-                                        (click)="setDataModalDetalles(i)" data-toggle="modal"
-                                        data-target="#modalDetalles"><i
-                                            class="fas fa-info-circle fa-lg text-gris"></i></a>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div *ngIf="screenWidth < 768" class="mb-1" style="height: 1rem;">
-                <div class="text-center">
-                    <div *ngIf="loading && screenWidth < 768" class="spinner-border spinner-border-sm text-success"
-                        role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-            </div> -->
         </div>
         <div class="col-12">
             <div class="text-center">
@@ -133,9 +92,6 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-12">
-                        <h5 class="platform-light text-rosado">Filtros</h5>
-                    </div>
                     <div class="col-12 col-md-8">
                         <div class="input-group mb-3">
                             <input id="buscar" [(ngModel)]="filters.search" name="buscar" type="text"
@@ -164,6 +120,13 @@
                             <option *ngFor="let i of localidades" attr.data-subtext="{{i.direccion}}"
                                 title="{{i.nombre}}" [value]="i">{{i.nombre}}</option>
                         </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-check">
+                            <input [(ngModel)]="filters.activo" type="checkbox" class="form-check-input"
+                                id="check-activos">
+                            <label class="form-check-label text-black-50" for="check-activos">Sólo activos</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,9 +188,9 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center" style="width: 15%;" scope="col">#</th>
-                                    <th style="width: 55%;" scope="col">Nombre</th>
-                                    <th class="text-center" style="width: 30%;" scope="col">Email</th>
+                                    <th class="text-center" style="width: 15%;">#</th>
+                                    <th style="width: 55%;">Nombre</th>
+                                    <th class="text-center" style="width: 30%;">Email</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -245,13 +208,63 @@
                             previousLabel="" nextLabel="">
                         </pagination-controls>
                     </div>
-                    <div *ngIf="empleoDetalle.postulantes && empleoDetalle.postulantes.length == 0" class="col-12 text-center">
+                    <div *ngIf="empleoDetalle.postulantes && empleoDetalle.postulantes.length == 0"
+                        class="col-12 text-center">
                         <p class="text-rosado platform-regular">No existen postulantes</p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button (click)="pm=1;" type="button" class="btn bg-rosado text-white" data-dismiss="modal">Cerrar</button>
+                <button (click)="pm=1;" type="button" class="btn bg-rosado text-white"
+                    data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activarOferta" tabindex="-1" role="dialog" aria-labelledby="activarOfertaLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title platform-regular text-rosado" id="activarOfertaLabel">Activar Empleo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="platform-regular text-black-50 m-0">Empleo: {{empleoActivar.oportunidad}} <br>
+                    ¿Desea activar el empleo?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button (click)="activarEmpleo()" type="button" class="btn bg-rosado text-white"
+                    data-dismiss="modal">Activar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="desactivarOferta" tabindex="-1" role="dialog" aria-labelledby="desactivarOfertaLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title platform-regular text-rosado" id="desactivarOfertaLabel">Desactivar Empleo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="platform-regular text-black-50 m-0">Empleo: {{empleoDesactivar.oportunidad}} <br>
+                    ¿Desea desactivar el empleo?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button (click)="desactivarEmpleo()" type="button" class="btn bg-rosado text-white"
+                    data-dismiss="modal">Desactivar</button>
             </div>
         </div>
     </div>

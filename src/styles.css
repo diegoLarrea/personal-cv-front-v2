@@ -33,6 +33,15 @@ body {
 .text-rosado {
   color: #d9186b;
 }
+
+.text-amarillo {
+  color: #fbb034;
+}
+
+.text-azul {
+  color: #0085ad;
+}
+
 .bg-rosado {
   background-color: #d9186b !important;
 }

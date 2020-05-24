@@ -20,4 +20,5 @@ export class OfertaLaboral {
     usuario_modificacion: any = null;
     codigo: string = null;
     postulantes: any = null;
+    activo: boolean = null;
 }

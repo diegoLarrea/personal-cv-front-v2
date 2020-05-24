@@ -3,6 +3,7 @@ import { TableMaganer } from 'src/app/_utils/table.manager';
 import { OfertaLaboralService } from 'src/app/_services/ofertaLaboral.service';
 import { OfertaLaboral } from 'src/app/_models/ofertaLaboral';
 import { DateFormatter } from 'src/app/_utils/date.formatter';
+import { ToastrService } from 'ngx-toastr';
 declare var $:any;
 @Component({
   selector: 'app-listar-empleo',
@@ -11,7 +12,7 @@ declare var $:any;
 })
 export class ListarEmpleoComponent implements OnInit {
 
-  constructor(private apiEmpleo: OfertaLaboralService) {
+  constructor(private apiEmpleo: OfertaLaboralService, private toastr: ToastrService) {
     let headers = [
       { columnName: "#", by: null },
       { columnName: "Código", by: null },
@@ -31,10 +32,13 @@ export class ListarEmpleoComponent implements OnInit {
   dateFormatter = new DateFormatter();  
   areas = [];
   localidades = [];
+  empleoActivar = new OfertaLaboral();
+  empleoDesactivar = new OfertaLaboral();
   filters = {
     search: null,
     areas: null,
-    localidades: null
+    localidades: null,
+    activo: null
   }
 
   //Datos modal detalles
@@ -70,8 +74,9 @@ export class ListarEmpleoComponent implements OnInit {
     this.filters.search = null;
     this.filters.areas = null;
     this.filters.localidades = null;
+    this.filters.activo = null;
 
-    this.tableManager.reset(2, "DESC");
+    this.tableManager.reset(3, "DESC");
     this.tableManager.setFilters(this.filters);
 
     setTimeout(()=> {
@@ -89,6 +94,24 @@ export class ListarEmpleoComponent implements OnInit {
         setTimeout(()=> {
           $("select").selectpicker("refresh");
         }, 0)
+      }
+    )
+  }
+
+  activarEmpleo(){
+    this.apiEmpleo.activarEmpleo(this.empleoActivar.id).subscribe(
+      data => {
+        this.toastr.success("Empleo activado");
+        this.empleoActivar.activo = true;
+      }
+    )
+  }
+
+  desactivarEmpleo(){
+    this.apiEmpleo.desactivarEmpleo(this.empleoDesactivar.id).subscribe(
+      data => {
+        this.toastr.success("Empleo desactivado");
+        this.empleoDesactivar.activo = false;
       }
     )
   }

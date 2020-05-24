@@ -9,6 +9,7 @@ export class OfertaLaboralService {
 
     constructor(private http: HttpClient) { }
 
+    // Servicios publicos
     getOfertasLaborales(page, buscar, cantidad, areas, localidades): Observable<any> {
 
         let params = new HttpParams();
@@ -53,6 +54,7 @@ export class OfertaLaboralService {
         return this.http.get(`api/public/empleos/${id}`);
     }
 
+    // Servicios admin
     getEmpleos(params): Observable<any> {
         let httpParams = new HttpParams();
         httpParams = httpParams.append("page", params.page.toString());
@@ -74,5 +76,13 @@ export class OfertaLaboralService {
 
     putEmpleo(body, id): Observable<any> {
         return this.http.put(`api/admin/empleo/${id}`, body);
+    }
+
+    activarEmpleo(id): Observable<any> {
+        return this.http.get(`api/admin/empleo/${id}/activar`);
+    }
+
+    desactivarEmpleo(id): Observable<any> {
+        return this.http.get(`api/admin/empleo/${id}/desactivar`);
     }
 }
