@@ -9,9 +9,8 @@
                 <i class="fas fa-search mr-2"></i>Filtros</button>
             <button routerLink="/portal/empleos/agregar" class="btn btn-sm bg-rosado text-white platform-regular mr-2">
                 <i class="fas fa-plus mr-2"></i>Agregar Empleo</button>
-            <!-- <button data-toggle="modal" data-target="#modalFiltros"
-                class="btn btn-sm bg-rosado text-white platform-regular mr-2">
-                <i class="fas fa-file-export mr-2"></i>Exportar</button> -->
+            <button (click)="exportar()" class="btn btn-sm bg-rosado text-white platform-regular mr-2">
+                <i class="fas fa-file-export mr-2"></i>Exportar</button>
         </div>
         <div class="col-12">
             <!-- Table screen >= 768px -->

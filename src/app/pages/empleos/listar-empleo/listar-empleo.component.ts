@@ -4,6 +4,7 @@ import { OfertaLaboralService } from 'src/app/_services/ofertaLaboral.service';
 import { OfertaLaboral } from 'src/app/_models/ofertaLaboral';
 import { DateFormatter } from 'src/app/_utils/date.formatter';
 import { ToastrService } from 'ngx-toastr';
+import { ExcelService } from 'src/app/_services/excel.service';
 declare var $:any;
 @Component({
   selector: 'app-listar-empleo',
@@ -12,7 +13,7 @@ declare var $:any;
 })
 export class ListarEmpleoComponent implements OnInit {
 
-  constructor(private apiEmpleo: OfertaLaboralService, private toastr: ToastrService) {
+  constructor(private apiEmpleo: OfertaLaboralService, private toastr: ToastrService, private excelService: ExcelService) {
     let headers = [
       { columnName: "#", by: null },
       { columnName: "Código", by: null },
@@ -65,7 +66,6 @@ export class ListarEmpleoComponent implements OnInit {
           this.empleos[i].fecha_creacion = this.dateFormatter.getDate(this.empleos[i].fecha_creacion);
           this.empleos[i].vigencia = this.dateFormatter.getDate(this.empleos[i].vigencia); 
         };
-        console.log(this.empleos);
       }
     )
   }
@@ -114,5 +114,10 @@ export class ListarEmpleoComponent implements OnInit {
         this.empleoDesactivar.activo = false;
       }
     )
+  }
+
+  exportar(){
+    let empleos = [...this.empleos];
+    this.excelService.empleosExcel(empleos);
   }
 }
