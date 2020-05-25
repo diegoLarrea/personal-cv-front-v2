@@ -19,10 +19,6 @@ export class EducacionService {
   }
 
   put(body, id): Observable<any>{
-    let file: FileModel = new FileModel();
-    file.filename = body.documento.filename;
-    file.file = body.documento.file;
-    body.documento = JSON.stringify(file);
     return this.http.put(`api/public/educacion/${id}`, body);
   }
 

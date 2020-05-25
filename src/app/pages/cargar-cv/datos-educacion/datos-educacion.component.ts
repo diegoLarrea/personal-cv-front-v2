@@ -68,6 +68,7 @@ export class DatosEducacionComponent implements OnInit {
       this.apiEdu.post(edu).subscribe(
         data => {
           this.educacion[this.educacion.length-1] = data;
+          this.educacion[this.educacion.length-1].documento = JSON.parse(this.educacion[this.educacion.length-1].documento);
           this.collapseEdu[this.educacion.length-1] = true;
           this.educacion.push(new Educacion());
           this.collapseEdu.push(true);

@@ -113,21 +113,36 @@
 <div class="row">
     <div class="col-12 col-md-6">
         <div class="card shadow-none border border-gris border-radius my-2">
-            <div class="card-header" [class.card-header-bb]="!checkFamiliares">
+            <div class="card-header">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input [(ngModel)]="checkFamiliares" name="familiares" class="form-check-input"
-                                type="checkbox" value="" id="check-familiares"
-                                (change)="collapse(checkFamiliares, 'familiares-collapse')">
-                            <label class="form-check-label" for="check-familiares">
-                                Tengo familiar(es) que trabaja(n) en Personal
-                            </label>
+                    <div class="col-12 text-center">
+                        <label>
+                            Tengo familiar(es) que trabaja(n) en Personal
+                        </label>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <div class="form-check">
+                                    <input (change)="changeRadioFamiliares()" class="form-check-input" type="radio" name="familiares-radio" id="familiares-si"
+                                    [(ngModel)]="checkFamiliares" [value]="true">
+                                    <label class="form-check-label" for="familiares-si">
+                                        Si
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="form-check">
+                                    <input (change)="changeRadioFamiliares()" class="form-check-input" type="radio" name="familiares-radio" id="familiares-no"
+                                    [(ngModel)]="checkFamiliares" [value]="false">
+                                    <label class="form-check-label" for="familiares-no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body collapse" id="familiares-collapse">
+            <div class="card-body" [class.disable-element]="!checkFamiliares">
                 <div class="row">
                     <div *ngFor="let i of familiares; index as j;" class="col-12">
                         <div class="input-group mb-2">
@@ -153,21 +168,36 @@
     </div>
     <div class="col-12 col-md-6">
         <div class="card shadow-none border border-gris border-radius my-2">
-            <div class="card-header" [class.card-header-bb]="!checkHeTrabajado">
+            <div class="card-header">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input [(ngModel)]="checkHeTrabajado" name="ha_trabajado" class="form-check-input"
-                                type="checkbox" value="" id="check-he-trabajado"
-                                (change)="collapse(checkHeTrabajado, 'he-trabajado-collapse')">
-                            <label class="form-check-label" for="check-he-trabajado">
-                                He trabajado en Personal
-                            </label>
+                    <div class="col-12 text-center">
+                        <label>
+                            He trabajado en Personal
+                        </label>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <div class="form-check">
+                                    <input (change)="changeRadioHeTrabajado()" class="form-check-input" type="radio" name="hetrabajado-radio" id="hetrabajdo-si"
+                                    [(ngModel)]="checkHeTrabajado" [value]="true">
+                                    <label class="form-check-label" for="hetrabajdo-si">
+                                        Si
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="form-check">
+                                    <input (change)="changeRadioHeTrabajado()" class="form-check-input" type="radio" name="hetrabajado-radio" id="hetrabajdo-no"
+                                    [(ngModel)]="checkHeTrabajado" [value]="false">
+                                    <label class="form-check-label" for="hetrabajdo-no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body collapse" id="he-trabajado-collapse">
+            <div class="card-body" [class.disable-element]="!checkHeTrabajado">
                 <div class="row">
                     <div class="col-12">
                         <label for="he-trabajado-cargo">Cargo</label>

@@ -12,13 +12,11 @@ declare var $:any;
 export class DatosPersonalesComponent implements OnInit {
 
   persona: Persona = new Persona();
+  initializeCollapse = true;
   @Input() set datosPersonales(p: Persona){
-
     this.persona = p;
-
     if(this.persona.ha_trabajado != null){
       this.checkHeTrabajado = true;
-      $('#familiares-collapse').collapse('show');
       let value = JSON.parse(this.persona.ha_trabajado);
       this.heTrabajado.cargo = value.cargo;
       this.heTrabajado.supervisor = value.supervisor;
@@ -27,16 +25,12 @@ export class DatosPersonalesComponent implements OnInit {
 
     if(this.persona.familiares != null){
       this.checkFamiliares = true;
-      $('#he-trabajado-collapse').collapse('show');
       let values = JSON.parse(this.persona.familiares);
       this.familiares = [];
       for(let i=0; i<values.length; i++){
         this.familiares.push(values[i]);
       }
     }
-    setTimeout(()=>{
-      $(".dp-select").selectpicker('refresh');
-    },0)
   }
 
   paises = [];
@@ -55,20 +49,10 @@ export class DatosPersonalesComponent implements OnInit {
   ngOnInit(): void {
     this.paises = Paises.paises;
     this.addFamiliar();
-    setTimeout(()=>{
-      $(".dp-select").selectpicker('refresh');
-    },0)
   }
 
   getPersona(){
     return this.persona;
-  }
-
-  collapse(value, target){
-    if(!value){
-      this.familiares = [{nombre:null}]
-    }
-    $(`#${target}`).collapse( value?"show":"hide");
   }
 
   addFamiliar(){
@@ -114,6 +98,20 @@ export class DatosPersonalesComponent implements OnInit {
       }
     )
   }  
+
+  changeRadioFamiliares(){
+    if(!this.checkFamiliares){
+      this.familiares = [{nombre:null}];
+    }
+  }
+
+  changeRadioHeTrabajado(){
+    if(!this.checkHeTrabajado){
+      this.heTrabajado.cargo = null;
+      this.heTrabajado.supervisor = null;
+      this.heTrabajado.donde = null;
+    }
+  }
 }
 
 // {hasValues:true, values:[{}]}

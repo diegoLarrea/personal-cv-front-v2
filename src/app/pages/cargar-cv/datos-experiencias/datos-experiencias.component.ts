@@ -44,6 +44,7 @@ export class DatosExperienciasComponent implements OnInit {
       this.apiExp.post(exp).subscribe(
         data => {
           this.experiencias[this.experiencias.length-1] = data;
+          this.experiencias[this.experiencias.length-1].documento = JSON.parse(this.experiencias[this.experiencias.length-1].documento);
           this.collapseExp[this.experiencias.length-1] = true;
           this.experiencias.push(new Experiencia());
           this.collapseExp.push(true);
@@ -110,7 +111,6 @@ export class DatosExperienciasComponent implements OnInit {
       let fileExtension = files.item(0).name.substring(files.item(0).name.lastIndexOf('.') + 1);
       let size = files.item(0).size / 1000000; // En mb
       let name: string = files.item(0).name;
-      console.log(name);
       if ((fileExtension == 'png' ||
         fileExtension == 'jpg' ||
         fileExtension == 'jpeg' ||
@@ -121,8 +121,6 @@ export class DatosExperienciasComponent implements OnInit {
         fileModel.filename = name;
         fileModel.file = file64.toString();
         edu.documento = JSON.stringify(fileModel);
-        console.log("hola");
-        console.log(name);
         setTimeout(()=>{
           $(`#input-file-label-${j}-exp`).html(name);
         },0);

@@ -5,7 +5,7 @@
     </div>
     <div *ngFor="let i of experiencias; index as j;" class="col-12">
         <div class="card shadow-none border border-gris border-radius my-1">
-            <div (click)="collapseExp[j]=!collapseExp[j]" data-toggle="collapse" attr.href="#collapse-exp-{{j}}" class="card-header">
+            <div (click)="collapseExp[j]=!collapseExp[j]" data-toggle="collapse" attr.href="#collapse-exp-{{j}}" class="card-header" style="cursor: pointer;">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseExp[j]? 'down':'up'}}"></i></a>
                 <div class="row">
                     <div *ngIf="i.id == null" class="col-12 my-auto">
@@ -16,113 +16,115 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body collapse" id="collapse-exp-{{j}}">
-                <div class="row">
-                    <div class="col-12 col-md-6 col-md-8">
-                        <label>Institución</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.institucion" name="institucion-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-46 col-lg-4">
-                        <label>Rubro</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.rubro" name="rubro-{{j}}" class="custom-select"
-                                id="rubro-{{j}}">
-                                <option *ngFor="let r of rubros" class="platform-regular" [value]="r">{{r}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <h6 class="platform-regular">Tus datos</h6>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <label>Puesto</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.puesto" name="puesto-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <label>¿Trabajando?</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.trabajando" name="trabajando-{{j}}" class="custom-select"
-                                id="trabajando-{{j}}">
-                                <option class="platform-regular" [value]="true">Sí</option>
-                                <option class="platform-regular" [value]="false">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <label>Desde</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.desde" name="desde-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <label>Hasta</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.hasta" name="hasta-{{j}}"
-                                type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <label>Tareas</label>
-                        <div class="input-group mb-3">
-                            <textarea [(ngModel)]="i.tareas" name="tareas-{{j}}" class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <h6 class="platform-regular">Superior Inmediato</h6>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <label>Nombre</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.superior_nombre" name="superior_nombre-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <label>Cargo</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.superior_puesto" name="superior_puesto-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <label>Contacto</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.superior_contacto" name="superior_contacto-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="input-group mb-3">
-                            <div (click)="verArchivo(i.documento)" *ngIf="i.id != null" class="input-group-prepend">
-                                <button class="btn btn-outline-negro" type="button" id="input-file-btn-{{j}}">
-                                    <span><i class="fas fa-file-download"></i></span>
-                                    <span class="d-none d-md-inline ml-2 ">Ver archivo</span>
-                                </button>
-                            </div>
-                            <div class="custom-file">
-                                <input (change)="handleFiles(i, $event.target.files, j)" type="file"
-                                    class="custom-file-input" id="input-file-{{j}}"
-                                    attr.aria-describedby="input-file-btn-{{j}}">
-                                <label class="custom-file-label" id="input-file-label-{{j}}-exp" for="input-file-{{j}}">
-                                    {{i.documento != null? i.documento.filename:"Elegir archivo"}}</label>
+            <div class="collapse" id="collapse-exp-{{j}}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-md-8">
+                            <label>Institución</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.institucion" name="institucion-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button (click)="postExperiencia(i)" *ngIf="i.id == null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
-                        <button (click)="putExperiencia(i)" *ngIf="i.id != null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
-                        <button (click)="deleteExperiencia(i.id, j)" *ngIf="i.id != null"
-                            class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        <div class="col-12 col-sm-4 col-md-46 col-lg-4">
+                            <label>Rubro</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.rubro" name="rubro-{{j}}" class="custom-select"
+                                    id="rubro-{{j}}">
+                                    <option *ngFor="let r of rubros" class="platform-regular" [value]="r">{{r}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <h6 class="platform-regular">Tus datos</h6>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <label>Puesto</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.puesto" name="puesto-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <label>¿Trabajando?</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.trabajando" name="trabajando-{{j}}" class="custom-select"
+                                    id="trabajando-{{j}}">
+                                    <option class="platform-regular" [value]="true">Sí</option>
+                                    <option class="platform-regular" [value]="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <label>Desde</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.desde" name="desde-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <label>Hasta</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.hasta" name="hasta-{{j}}"
+                                    type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label>Tareas</label>
+                            <div class="input-group mb-3">
+                                <textarea [(ngModel)]="i.tareas" name="tareas-{{j}}" class="form-control" aria-label="With textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <h6 class="platform-regular">Superior Inmediato</h6>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <label>Nombre</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.superior_nombre" name="superior_nombre-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <label>Cargo</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.superior_puesto" name="superior_puesto-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <label>Contacto</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.superior_contacto" name="superior_contacto-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div (click)="verArchivo(i.documento)" *ngIf="i.id != null" class="input-group-prepend">
+                                    <button class="btn btn-outline-negro" type="button" id="input-file-btn-{{j}}">
+                                        <span><i class="fas fa-file-download"></i></span>
+                                        <span class="d-none d-md-inline ml-2 ">Ver archivo</span>
+                                    </button>
+                                </div>
+                                <div class="custom-file">
+                                    <input (change)="handleFiles(i, $event.target.files, j)" type="file"
+                                        class="custom-file-input" id="input-file-{{j}}"
+                                        attr.aria-describedby="input-file-btn-{{j}}">
+                                    <label class="custom-file-label" id="input-file-label-{{j}}-exp" for="input-file-{{j}}">
+                                        {{i.documento != null? i.documento.filename:"Elegir archivo"}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button (click)="postExperiencia(i)" *ngIf="i.id == null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
+                            <button (click)="putExperiencia(i)" *ngIf="i.id != null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
+                            <button (click)="deleteExperiencia(i.id, j)" *ngIf="i.id != null"
+                                class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>

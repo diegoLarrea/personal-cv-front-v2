@@ -7,7 +7,7 @@
     <div *ngFor="let i of referencias; index as j;" class="col-12">
         <div class="card shadow-none border border-gris border-radius my-1">
             <div (click)="collapseRef[j]=!collapseRef[j]" data-toggle="collapse" attr.href="#collapse-ref-{{j}}"
-                class="card-header">
+                class="card-header" style="cursor: pointer;">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseRef[j]? 'down':'up'}}"></i></a>
                 <div class="row">
                     <div *ngIf="i.id == null" class="col-12 my-auto">
@@ -18,37 +18,39 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body collapse" id="collapse-ref-{{j}}">
-                <div class="row">
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <label>Nombre</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.nombre" name="nombre-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <div class="collapse" id="collapse-ref-{{j}}">
+                <div class="card-body" >
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <label>Nombre</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.nombre" name="nombre-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <label>Parentesco</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.parentesco" name="parentesco-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <label>Parentesco</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.parentesco" name="parentesco-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <label>Contacto</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.contacto" name="contacto-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <label>Contacto</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.contacto" name="contacto-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-12">
-                        <button (click)="postReferencia(i)" *ngIf="i.id == null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
-                        <button (click)="putReferencia(i)" *ngIf="i.id != null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
-                        <button (click)="deleteReferencia(i.id, j)" *ngIf="i.id != null"
-                            class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+    
+                        <div class="col-12">
+                            <button (click)="postReferencia(i)" *ngIf="i.id == null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
+                            <button (click)="putReferencia(i)" *ngIf="i.id != null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
+                            <button (click)="deleteReferencia(i.id, j)" *ngIf="i.id != null"
+                                class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>

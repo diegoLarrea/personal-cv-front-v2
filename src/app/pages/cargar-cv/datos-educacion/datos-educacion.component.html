@@ -6,7 +6,8 @@
     </div>
     <div *ngFor="let i of educacion; index as j;" class="col-12">
         <div class="card shadow-none border border-gris border-radius my-1">
-            <div (click)="collapseEdu[j]=!collapseEdu[j]" data-toggle="collapse" attr.href="#collapse-{{j}}" class="card-header">
+            <div (click)="collapseEdu[j]=!collapseEdu[j]" data-toggle="collapse" attr.href="#collapse-{{j}}"
+                class="card-header" style="cursor: pointer;">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseEdu[j]? 'down':'up'}}"></i></a>
                 <div class="row">
                     <div *ngIf="i.id == null" class="col-12 my-auto">
@@ -17,87 +18,88 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body collapse" id="collapse-{{j}}">
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <label>Institución</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.institucion" name="institucion-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label>Título</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.titulo" name="titulo-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <label>Grado Académico</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.nivel" name="nivel-{{j}}" class="custom-select" id="nivel-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of grados" [value]="k">{{k}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <label>País</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.pais" name="nivel-{{j}}" class="custom-select" id="nivel-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of paises" [value]="k">{{k}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-2">
-                        <label>¿Estudiando?</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.estudiando" name="nivel-{{j}}" class="custom-select"
-                                id="estudiando-{{j}}">
-                                <option class="platform-regular" [value]="true">Sí</option>
-                                <option class="platform-regular" [value]="false">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-2">
-                        <label>Desde</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.desde" name="desde-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-2">
-                        <label>Hasta</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.hasta" name="hasta-{{j}}"
-                                type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="input-group mb-3">
-                            <div (click)="verArchivo(i.documento)" *ngIf="i.id != null" class="input-group-prepend">
-                                <button class="btn btn-outline-negro" type="button" id="input-file-btn-{{j}}">
-                                    <span><i class="fas fa-file-download"></i></span>
-                                    <span class="d-none d-md-inline ml-2 ">Ver archivo</span>
-                                </button>
-                            </div>
-                            <div class="custom-file">
-                                <input (change)="handleFiles(i, $event.target.files, j)" type="file"
-                                    class="custom-file-input" id="input-file-{{j}}"
-                                    attr.aria-describedby="input-file-btn-{{j}}">
-                                <label class="custom-file-label" id="input-file-label-{{j}}" for="input-file-{{j}}">
-                                    {{i.id != null? i.documento.filename:"Elegir archivo"}}</label>
+            <div class="collapse" id="collapse-{{j}}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label>Institución</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.institucion" name="institucion-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button (click)="postEducacion(i)" *ngIf="i.id == null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
-                        <button (click)="putEducacion(i)" *ngIf="i.id != null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
-                        <button (click)="deleteEducacion(i.id, j)" *ngIf="i.id != null"
-                            class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        <div class="col-12 col-md-6">
+                            <label>Título</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.titulo" name="titulo-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <label>Grado Académico</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.nivel" name="nivel-{{j}}" class="custom-select" id="nivel-{{j}}">
+                                    <option class="platform-regular" *ngFor="let k of grados" [value]="k">{{k}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <label>País</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.pais" name="nivel-{{j}}" class="custom-select" id="nivel-{{j}}">
+                                    <option class="platform-regular" *ngFor="let k of paises" [value]="k">{{k}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                            <label>¿Estudiando?</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.estudiando" name="nivel-{{j}}" class="custom-select"
+                                    id="estudiando-{{j}}">
+                                    <option class="platform-regular" [value]="true">Sí</option>
+                                    <option class="platform-regular" [value]="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                            <label>Desde</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.desde" name="desde-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                            <label>Hasta</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.hasta" name="hasta-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div (click)="verArchivo(i.documento)" *ngIf="i.id != null" class="input-group-prepend">
+                                    <button class="btn btn-outline-negro" type="button" id="input-file-btn-{{j}}">
+                                        <span><i class="fas fa-file-download"></i></span>
+                                        <span class="d-none d-md-inline ml-2 ">Ver archivo</span>
+                                    </button>
+                                </div>
+                                <div class="custom-file">
+                                    <input (change)="handleFiles(i, $event.target.files, j)" type="file"
+                                        class="custom-file-input" id="input-file-{{j}}"
+                                        attr.aria-describedby="input-file-btn-{{j}}">
+                                    <label class="custom-file-label" id="input-file-label-{{j}}" for="input-file-{{j}}">
+                                        {{i.id != null? i.documento.filename:"Elegir archivo"}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button (click)="postEducacion(i)" *ngIf="i.id == null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
+                            <button (click)="putEducacion(i)" *ngIf="i.id != null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
+                            <button (click)="deleteEducacion(i.id, j)" *ngIf="i.id != null"
+                                class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,8 @@
     </div>
     <div *ngFor="let i of idiomas; index as j;" class="col-12">
         <div class="card shadow-none border border-gris border-radius my-1">
-            <div (click)="collapseIdio[j]=!collapseIdio[j]" data-toggle="collapse" attr.href="#collapse-idio-{{j}}" class="card-header">
+            <div (click)="collapseIdio[j]=!collapseIdio[j]" data-toggle="collapse" attr.href="#collapse-idio-{{j}}"
+                class="card-header" style="cursor: pointer;">
                 <a class="text-dark float-right"><i class="fas fa-chevron-{{collapseIdio[j]? 'down':'up'}}"></i></a>
                 <div class="row">
                     <div *ngIf="i.id == null" class="col-12 my-auto">
@@ -121,54 +124,58 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body collapse" id="collapse-idio-{{j}}">
-                <div class="row">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Idioma</label>
-                        <div class="input-group mb-3">
-                            <input [(ngModel)]="i.idioma" name="idioma-{{j}}" type="text" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <div class="collapse" id="collapse-idio-{{j}}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label>Idioma</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="i.idioma" name="idioma-{{j}}" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Habla</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.habla" name="habla-{{j}}" class="custom-select"
-                                id="estudiando-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
-                                    {{k.nombre}}</option>
-                            </select>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label>Habla</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.habla" name="habla-{{j}}" class="custom-select"
+                                    id="estudiando-{{j}}">
+                                    <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
+                                        {{k.nombre}}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Lee</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.lee" name="lee-{{j}}" class="custom-select" id="estudiando-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
-                                    {{k.nombre}}</option>
-                            </select>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label>Lee</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.lee" name="lee-{{j}}" class="custom-select"
+                                    id="estudiando-{{j}}">
+                                    <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
+                                        {{k.nombre}}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Escribe</label>
-                        <div class="input-group mb-3">
-                            <select [(ngModel)]="i.escribe" name="escribe-{{j}}" class="custom-select"
-                                id="estudiando-{{j}}">
-                                <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
-                                    {{k.nombre}}</option>
-                            </select>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label>Escribe</label>
+                            <div class="input-group mb-3">
+                                <select [(ngModel)]="i.escribe" name="escribe-{{j}}" class="custom-select"
+                                    id="estudiando-{{j}}">
+                                    <option class="platform-regular" *ngFor="let k of idiomasSelect" [value]="k.id">
+                                        {{k.nombre}}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button (click)="postIdioma(i)" *ngIf="i.id == null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
-                        <button (click)="putIdioma(i)" *ngIf="i.id != null"
-                            class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
-                        <button (click)="deleteIdioma(i.id, j)" *ngIf="i.id != null"
-                            class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        <div class="col-12">
+                            <button (click)="postIdioma(i)" *ngIf="i.id == null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular float-right">Guardar</button>
+                            <button (click)="putIdioma(i)" *ngIf="i.id != null"
+                                class="btn btn-sm bg-rosado text-white border-rosado platform-regular ml-2 float-right">Actualizar</button>
+                            <button (click)="deleteIdioma(i.id, j)" *ngIf="i.id != null"
+                                class="btn btn-sm btn-outline-negro platform-regular float-right">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -13,3 +13,9 @@ label {
 .card-header-bb {
     border-bottom: none;
 }
+
+.disable-element {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed !important;
+}
